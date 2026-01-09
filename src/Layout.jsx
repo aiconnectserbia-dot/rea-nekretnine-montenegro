@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from './utils';
-import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { base44 } from '@/api/base44Client';
 
 export default function Layout({ children, currentPageName }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,12 +18,29 @@ export default function Layout({ children, currentPageName }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const user = await base44.auth.me();
+        setIsAdmin(user.role === 'admin');
+      } catch (error) {
+        setIsAdmin(false);
+      }
+    };
+    checkAdmin();
+  }, []);
+
   const navLinks = [
     { name: 'Početna', page: 'Home' },
     { name: 'Nekretnine', page: 'Properties' },
     { name: 'O Nama', page: 'About' },
     { name: 'Kontakt', page: 'Contact' },
   ];
+
+  const adminNavLinks = isAdmin ? [
+    ...navLinks,
+    { name: 'Admin Panel', page: 'AdminPanel', icon: Shield }
+  ] : navLinks;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
@@ -87,16 +106,17 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-10">
-              {navLinks.map((link) => (
+              {adminNavLinks.map((link) => (
                 <Link
                   key={link.page}
                   to={createPageUrl(link.page)}
-                  className={`relative text-sm tracking-wider uppercase transition-colors duration-300 ${
+                  className={`relative text-sm tracking-wider uppercase transition-colors duration-300 flex items-center gap-2 ${
                     currentPageName === link.page 
                       ? 'text-[#d4af37]' 
                       : 'text-white/80 hover:text-[#d4af37]'
                   }`}
                 >
+                  {link.icon && <link.icon className="w-4 h-4" />}
                   {link.name}
                   {currentPageName === link.page && (
                     <motion.div 
@@ -136,15 +156,16 @@ export default function Layout({ children, currentPageName }) {
               className="lg:hidden bg-[#0a0a0a] border-t border-[#d4af37]/20"
             >
               <nav className="px-6 py-6 space-y-4">
-                {navLinks.map((link) => (
+                {adminNavLinks.map((link) => (
                   <Link
                     key={link.page}
                     to={createPageUrl(link.page)}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`block py-2 text-lg tracking-wider uppercase ${
+                    className={`flex items-center gap-2 py-2 text-lg tracking-wider uppercase ${
                       currentPageName === link.page ? 'text-[#d4af37]' : 'text-white/80'
                     }`}
                   >
+                    {link.icon && <link.icon className="w-5 h-5" />}
                     {link.name}
                   </Link>
                 ))}

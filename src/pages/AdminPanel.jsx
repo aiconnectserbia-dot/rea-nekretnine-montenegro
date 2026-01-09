@@ -1,0 +1,560 @@
+import React, { useState, useEffect } from 'react';
+import { base44 } from '@/api/base44Client';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { motion } from 'framer-motion';
+import { 
+  Plus, Upload, X, Loader2, Check, Image as ImageIcon, Trash2,
+  Home, Building2, DollarSign, MapPin, Maximize2, Bed, Bath
+} from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "sonner";
+import { Checkbox } from "@/components/ui/checkbox";
+
+export default function AdminPanel() {
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [formData, setFormData] = useState({
+    title: '',
+    location: '',
+    region: '',
+    price: '',
+    price_on_request: false,
+    property_type: '',
+    listing_type: 'prodaja',
+    bedrooms: '',
+    bathrooms: '',
+    area: '',
+    description: '',
+    category: '',
+    featured: false,
+    features: []
+  });
+  const [mainImage, setMainImage] = useState(null);
+  const [mainImagePreview, setMainImagePreview] = useState('');
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [galleryPreviews, setGalleryPreviews] = useState([]);
+  const [uploadingImages, setUploadingImages] = useState(false);
+  const [featureInput, setFeatureInput] = useState('');
+
+  const queryClient = useQueryClient();
+
+  // Check if user is admin
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const currentUser = await base44.auth.me();
+        setUser(currentUser);
+        if (currentUser.role !== 'admin') {
+          toast.error('Nemate dozvolu za pristup ovoj stranici');
+        }
+      } catch (error) {
+        toast.error('Morate biti prijavljeni');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    checkAdmin();
+  }, []);
+
+  const createPropertyMutation = useMutation({
+    mutationFn: async (data) => {
+      // Upload images first
+      let imageUrl = '';
+      let galleryUrls = [];
+
+      if (mainImage) {
+        setUploadingImages(true);
+        const mainUpload = await base44.integrations.Core.UploadFile({ file: mainImage });
+        imageUrl = mainUpload.file_url;
+      }
+
+      if (galleryImages.length > 0) {
+        const galleryUploads = await Promise.all(
+          galleryImages.map(img => base44.integrations.Core.UploadFile({ file: img }))
+        );
+        galleryUrls = galleryUploads.map(upload => upload.file_url);
+      }
+
+      setUploadingImages(false);
+
+      // Create property
+      return base44.entities.Property.create({
+        ...data,
+        image_url: imageUrl,
+        gallery: galleryUrls,
+        price: data.price ? parseFloat(data.price) : null,
+        bedrooms: data.bedrooms ? parseInt(data.bedrooms) : null,
+        bathrooms: data.bathrooms ? parseInt(data.bathrooms) : null,
+        area: data.area ? parseFloat(data.area) : null,
+      });
+    },
+    onSuccess: () => {
+      toast.success('Nekretnina uspješno dodana!');
+      queryClient.invalidateQueries({ queryKey: ['properties'] });
+      // Reset form
+      setFormData({
+        title: '',
+        location: '',
+        region: '',
+        price: '',
+        price_on_request: false,
+        property_type: '',
+        listing_type: 'prodaja',
+        bedrooms: '',
+        bathrooms: '',
+        area: '',
+        description: '',
+        category: '',
+        featured: false,
+        features: []
+      });
+      setMainImage(null);
+      setMainImagePreview('');
+      setGalleryImages([]);
+      setGalleryPreviews([]);
+      setFeatureInput('');
+    },
+    onError: (error) => {
+      toast.error('Greška pri dodavanju nekretnine');
+      console.error(error);
+    }
+  });
+
+  const handleMainImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setMainImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setMainImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleGalleryImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+    setGalleryImages([...galleryImages, ...files]);
+    
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setGalleryPreviews(prev => [...prev, reader.result]);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const removeGalleryImage = (index) => {
+    setGalleryImages(galleryImages.filter((_, i) => i !== index));
+    setGalleryPreviews(galleryPreviews.filter((_, i) => i !== index));
+  };
+
+  const addFeature = () => {
+    if (featureInput.trim()) {
+      setFormData({
+        ...formData,
+        features: [...formData.features, featureInput.trim()]
+      });
+      setFeatureInput('');
+    }
+  };
+
+  const removeFeature = (index) => {
+    setFormData({
+      ...formData,
+      features: formData.features.filter((_, i) => i !== index)
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    if (!mainImage) {
+      toast.error('Morate dodati glavnu sliku');
+      return;
+    }
+
+    createPropertyMutation.mutate(formData);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen pt-32 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-[#d4af37] animate-spin" />
+      </div>
+    );
+  }
+
+  if (!user || user.role !== 'admin') {
+    return (
+      <div className="min-h-screen pt-32 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-light text-white mb-4">Nemate Pristup</h1>
+          <p className="text-white/60">Ova stranica je dostupna samo administratorima.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen pt-24 pb-16">
+      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8"
+        >
+          <div className="flex items-center gap-4 mb-4">
+            <div className="h-[1px] w-12 bg-[#d4af37]" />
+            <span className="text-[#d4af37] text-xs tracking-[0.3em] uppercase">Admin Panel</span>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-light text-white tracking-wide">
+            Dodaj Novu
+            <span className="gold-text font-serif italic"> Nekretninu</span>
+          </h1>
+          <p className="mt-3 text-white/60">
+            Popunite sve podatke i dodajte slike za novu nekretninu
+          </p>
+        </motion.div>
+
+        {/* Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+        >
+          <form onSubmit={handleSubmit} className="bg-[#1a1a1a] p-6 md:p-8 space-y-8">
+            {/* Basic Info */}
+            <div className="space-y-6">
+              <h2 className="text-xl font-light text-white flex items-center gap-3">
+                <Home className="w-5 h-5 text-[#d4af37]" />
+                Osnovne Informacije
+              </h2>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <Label className="text-white/80 mb-2 block">Naslov *</Label>
+                  <Input
+                    value={formData.title}
+                    onChange={(e) => setFormData({...formData, title: e.target.value})}
+                    required
+                    placeholder="Npr. Luksuzna Vila sa Bazenom"
+                    className="bg-white/5 border-white/10 text-white"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-white/80 mb-2 block">Lokacija *</Label>
+                  <Input
+                    value={formData.location}
+                    onChange={(e) => setFormData({...formData, location: e.target.value})}
+                    required
+                    placeholder="Npr. Tivat"
+                    className="bg-white/5 border-white/10 text-white"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-white/80 mb-2 block">Region</Label>
+                  <Input
+                    value={formData.region}
+                    onChange={(e) => setFormData({...formData, region: e.target.value})}
+                    placeholder="Npr. Porto Montenegro"
+                    className="bg-white/5 border-white/10 text-white"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-white/80 mb-2 block">Tip Nekretnine *</Label>
+                  <Select value={formData.property_type} onValueChange={(v) => setFormData({...formData, property_type: v})}>
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                      <SelectValue placeholder="Izaberite tip" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
+                      <SelectItem value="apartman">Apartman</SelectItem>
+                      <SelectItem value="vila">Vila</SelectItem>
+                      <SelectItem value="kuca">Kuća</SelectItem>
+                      <SelectItem value="zemljiste">Zemljište</SelectItem>
+                      <SelectItem value="hotel">Hotel</SelectItem>
+                      <SelectItem value="poslovni_prostor">Poslovni Prostor</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label className="text-white/80 mb-2 block">Tip Oglasa *</Label>
+                  <Select value={formData.listing_type} onValueChange={(v) => setFormData({...formData, listing_type: v})}>
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
+                      <SelectItem value="prodaja">Prodaja</SelectItem>
+                      <SelectItem value="iznajmljivanje">Iznajmljivanje</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label className="text-white/80 mb-2 block">Kategorija</Label>
+                  <Select value={formData.category} onValueChange={(v) => setFormData({...formData, category: v})}>
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                      <SelectValue placeholder="Izaberite kategoriju" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
+                      <SelectItem value="porto_montenegro">Porto Montenegro</SelectItem>
+                      <SelectItem value="lustica_bay">Luštica Bay</SelectItem>
+                      <SelectItem value="portonovi">Portonovi</SelectItem>
+                      <SelectItem value="boka_kotorska">Boka Kotorska</SelectItem>
+                      <SelectItem value="budva">Budva</SelectItem>
+                      <SelectItem value="waterfront">Waterfront</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+
+            {/* Price & Details */}
+            <div className="space-y-6">
+              <h2 className="text-xl font-light text-white flex items-center gap-3">
+                <DollarSign className="w-5 h-5 text-[#d4af37]" />
+                Cijena i Detalji
+              </h2>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <Label className="text-white/80 mb-2 block">Cijena (€)</Label>
+                  <Input
+                    type="number"
+                    value={formData.price}
+                    onChange={(e) => setFormData({...formData, price: e.target.value})}
+                    placeholder="Npr. 250000"
+                    disabled={formData.price_on_request}
+                    className="bg-white/5 border-white/10 text-white"
+                  />
+                  <div className="flex items-center gap-2 mt-2">
+                    <Checkbox
+                      id="price_on_request"
+                      checked={formData.price_on_request}
+                      onCheckedChange={(checked) => setFormData({...formData, price_on_request: checked})}
+                      className="border-white/20"
+                    />
+                    <label htmlFor="price_on_request" className="text-white/60 text-sm cursor-pointer">
+                      Cijena na upit
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <Label className="text-white/80 mb-2 block">Površina (m²)</Label>
+                  <Input
+                    type="number"
+                    value={formData.area}
+                    onChange={(e) => setFormData({...formData, area: e.target.value})}
+                    placeholder="Npr. 150"
+                    className="bg-white/5 border-white/10 text-white"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-white/80 mb-2 block">Broj Spavaćih Soba</Label>
+                  <Input
+                    type="number"
+                    value={formData.bedrooms}
+                    onChange={(e) => setFormData({...formData, bedrooms: e.target.value})}
+                    placeholder="Npr. 3"
+                    className="bg-white/5 border-white/10 text-white"
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-white/80 mb-2 block">Broj Kupatila</Label>
+                  <Input
+                    type="number"
+                    value={formData.bathrooms}
+                    onChange={(e) => setFormData({...formData, bathrooms: e.target.value})}
+                    placeholder="Npr. 2"
+                    className="bg-white/5 border-white/10 text-white"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="space-y-4">
+              <Label className="text-white/80">Opis</Label>
+              <Textarea
+                value={formData.description}
+                onChange={(e) => setFormData({...formData, description: e.target.value})}
+                placeholder="Unesite detaljan opis nekretnine..."
+                rows={6}
+                className="bg-white/5 border-white/10 text-white resize-none"
+              />
+            </div>
+
+            {/* Features */}
+            <div className="space-y-4">
+              <Label className="text-white/80">Karakteristike</Label>
+              <div className="flex gap-2">
+                <Input
+                  value={featureInput}
+                  onChange={(e) => setFeatureInput(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addFeature())}
+                  placeholder="Npr. Bazen, Pogled na more..."
+                  className="bg-white/5 border-white/10 text-white"
+                />
+                <Button
+                  type="button"
+                  onClick={addFeature}
+                  className="bg-[#d4af37] hover:bg-[#b8960c] text-black"
+                >
+                  <Plus className="w-4 h-4" />
+                </Button>
+              </div>
+              {formData.features.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {formData.features.map((feature, index) => (
+                    <div key={index} className="flex items-center gap-2 px-3 py-1 bg-[#d4af37]/20 border border-[#d4af37]/30 text-white text-sm">
+                      <Check className="w-3 h-3 text-[#d4af37]" />
+                      <span>{feature}</span>
+                      <button
+                        type="button"
+                        onClick={() => removeFeature(index)}
+                        className="ml-1 text-white/60 hover:text-white"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Images */}
+            <div className="space-y-6">
+              <h2 className="text-xl font-light text-white flex items-center gap-3">
+                <ImageIcon className="w-5 h-5 text-[#d4af37]" />
+                Slike
+              </h2>
+
+              {/* Main Image */}
+              <div>
+                <Label className="text-white/80 mb-3 block">Glavna Slika *</Label>
+                {mainImagePreview ? (
+                  <div className="relative">
+                    <img src={mainImagePreview} alt="Preview" className="w-full h-64 object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMainImage(null);
+                        setMainImagePreview('');
+                      }}
+                      className="absolute top-2 right-2 p-2 bg-red-600 hover:bg-red-700 text-white"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <label className="block w-full h-64 border-2 border-dashed border-white/20 hover:border-[#d4af37]/50 cursor-pointer transition-colors">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleMainImageChange}
+                      className="hidden"
+                    />
+                    <div className="h-full flex flex-col items-center justify-center gap-3 text-white/60">
+                      <Upload className="w-12 h-12" />
+                      <p>Kliknite ili prevucite sliku</p>
+                      <p className="text-sm">PNG, JPG, JPEG, WEBP do 10MB</p>
+                    </div>
+                  </label>
+                )}
+              </div>
+
+              {/* Gallery */}
+              <div>
+                <Label className="text-white/80 mb-3 block">Galerija Slika (Opcionalno)</Label>
+                <label className="block w-full p-6 border-2 border-dashed border-white/20 hover:border-[#d4af37]/50 cursor-pointer transition-colors">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleGalleryImagesChange}
+                    className="hidden"
+                  />
+                  <div className="flex flex-col items-center gap-2 text-white/60">
+                    <Plus className="w-8 h-8" />
+                    <p className="text-sm">Dodaj više slika</p>
+                  </div>
+                </label>
+
+                {galleryPreviews.length > 0 && (
+                  <div className="grid grid-cols-3 md:grid-cols-4 gap-4 mt-4">
+                    {galleryPreviews.map((preview, index) => (
+                      <div key={index} className="relative group">
+                        <img src={preview} alt={`Gallery ${index + 1}`} className="w-full h-32 object-cover" />
+                        <button
+                          type="button"
+                          onClick={() => removeGalleryImage(index)}
+                          className="absolute top-1 right-1 p-1 bg-red-600 hover:bg-red-700 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Featured Checkbox */}
+            <div className="flex items-center gap-3 p-4 bg-[#d4af37]/10 border border-[#d4af37]/30">
+              <Checkbox
+                id="featured"
+                checked={formData.featured}
+                onCheckedChange={(checked) => setFormData({...formData, featured: checked})}
+                className="border-[#d4af37]"
+              />
+              <label htmlFor="featured" className="text-white cursor-pointer">
+                <span className="font-medium">Istaknuta Nekretnina</span>
+                <p className="text-white/60 text-sm">Ova nekretnina će biti prikazana na početnoj stranici</p>
+              </label>
+            </div>
+
+            {/* Submit Button */}
+            <div className="flex gap-4 pt-4">
+              <Button
+                type="submit"
+                disabled={createPropertyMutation.isPending || uploadingImages}
+                className="flex-1 bg-[#d4af37] hover:bg-[#b8960c] text-black py-6 text-lg tracking-wider uppercase"
+              >
+                {createPropertyMutation.isPending || uploadingImages ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    {uploadingImages ? 'Upload Slika...' : 'Dodavanje...'}
+                  </>
+                ) : (
+                  <>
+                    <Check className="w-5 h-5 mr-2" />
+                    Postavi Oglas
+                  </>
+                )}
+              </Button>
+            </div>
+          </form>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
