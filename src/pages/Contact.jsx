@@ -97,7 +97,7 @@ export default function Contact() {
       {/* Contact Info Cards */}
       <section className="py-16 bg-[#1a1a1a]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {contactInfo.map((item, index) => (
               <motion.a
                 key={index}
@@ -106,12 +106,12 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 bg-[#0a0a0a] border border-white/5 hover:border-[#d4af37]/30 transition-all group"
+                className="p-4 sm:p-6 bg-[#0a0a0a] border border-white/5 hover:border-[#d4af37]/30 transition-all group"
               >
-                <item.icon className="w-8 h-8 text-[#d4af37] mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-lg font-light text-white mb-3">{item.title}</h3>
+                <item.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#d4af37] mb-3 sm:mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-base sm:text-lg font-light text-white mb-2 sm:mb-3">{item.title}</h3>
                 {item.details.map((detail, idx) => (
-                  <p key={idx} className="text-white/60 text-sm">{detail}</p>
+                  <p key={idx} className="text-white/60 text-xs sm:text-sm">{detail}</p>
                 ))}
               </motion.a>
             ))}

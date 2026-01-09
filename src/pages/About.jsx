@@ -71,7 +71,7 @@ export default function About() {
       {/* Stats */}
       <section className="py-16 bg-[#1a1a1a]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -81,9 +81,9 @@ export default function About() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <stat.icon className="w-8 h-8 text-[#d4af37] mx-auto mb-4" />
-                <p className="text-4xl font-light text-white mb-2">{stat.value}</p>
-                <p className="text-white/50 text-sm">{stat.label}</p>
+                <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#d4af37] mx-auto mb-3 sm:mb-4" />
+                <p className="text-2xl sm:text-4xl font-light text-white mb-1 sm:mb-2">{stat.value}</p>
+                <p className="text-white/50 text-xs sm:text-sm">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -165,7 +165,7 @@ export default function About() {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {values.map((value, index) => (
               <motion.div
                 key={index}

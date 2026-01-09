@@ -63,17 +63,17 @@ export default function CategoriesSection() {
         </motion.div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           {/* Large Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 lg:row-span-2"
+            className="col-span-2 lg:col-span-2 lg:row-span-2"
           >
             <Link 
               to={createPageUrl('Properties') + '?category=' + categories[0].slug}
-              className="group relative block h-full min-h-[500px] overflow-hidden"
+              className="group relative block h-full min-h-[280px] sm:min-h-[500px] overflow-hidden"
             >
               <img 
                 src={categories[0].image}
@@ -83,10 +83,10 @@ export default function CategoriesSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
               <div className="absolute inset-0 border border-[#d4af37]/0 group-hover:border-[#d4af37]/50 transition-colors duration-500" />
               
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <span className="text-[#d4af37] text-xs tracking-[0.2em] uppercase">{categories[0].description}</span>
-                <h3 className="text-3xl md:text-4xl font-light text-white mt-2 mb-4">{categories[0].name}</h3>
-                <div className="flex items-center gap-2 text-white/70 group-hover:text-[#d4af37] transition-colors">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8">
+                <span className="text-[#d4af37] text-[9px] sm:text-xs tracking-[0.2em] uppercase">{categories[0].description}</span>
+                <h3 className="text-xl sm:text-3xl md:text-4xl font-light text-white mt-1 sm:mt-2 mb-2 sm:mb-4">{categories[0].name}</h3>
+                <div className="hidden sm:flex items-center gap-2 text-white/70 group-hover:text-[#d4af37] transition-colors">
                   <span className="text-sm tracking-wider uppercase">Pogledaj nekretnine</span>
                   <ArrowRight className="w-4 h-4 transform group-hover:translate-x-2 transition-transform" />
                 </div>
@@ -105,7 +105,7 @@ export default function CategoriesSection() {
             >
               <Link 
                 to={createPageUrl('Properties') + '?category=' + category.slug}
-                className="group relative block h-[240px] overflow-hidden"
+                className="group relative block h-[140px] sm:h-[240px] overflow-hidden"
               >
                 <img 
                   src={category.image}
@@ -115,9 +115,9 @@ export default function CategoriesSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                 <div className="absolute inset-0 border border-[#d4af37]/0 group-hover:border-[#d4af37]/50 transition-colors duration-500" />
                 
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="text-[#d4af37] text-[10px] tracking-[0.2em] uppercase">{category.description}</span>
-                  <h3 className="text-xl font-light text-white mt-1">{category.name}</h3>
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6">
+                  <span className="text-[#d4af37] text-[8px] sm:text-[10px] tracking-[0.2em] uppercase">{category.description}</span>
+                  <h3 className="text-sm sm:text-xl font-light text-white mt-0.5 sm:mt-1">{category.name}</h3>
                 </div>
               </Link>
             </motion.div>

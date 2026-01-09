@@ -80,15 +80,15 @@ export default function AboutSection() {
             </p>
 
             {/* Mini Stats */}
-            <div className="grid grid-cols-2 gap-6 mb-10">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-10">
               {stats.slice(0, 4).map((stat, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  <div className="p-3 border border-[#d4af37]/30">
-                    <stat.icon className="w-5 h-5 text-[#d4af37]" />
+                <div key={index} className="flex items-start gap-2 sm:gap-4">
+                  <div className="p-2 sm:p-3 border border-[#d4af37]/30">
+                    <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#d4af37]" />
                   </div>
                   <div>
-                    <p className="text-2xl font-light text-white">{stat.value}</p>
-                    <p className="text-white/50 text-sm">{stat.label}</p>
+                    <p className="text-xl sm:text-2xl font-light text-white">{stat.value}</p>
+                    <p className="text-white/50 text-xs sm:text-sm">{stat.label}</p>
                   </div>
                 </div>
               ))}

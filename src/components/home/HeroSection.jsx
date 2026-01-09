@@ -102,11 +102,11 @@ export default function HeroSection() {
           </div>
 
           {/* Search Fields */}
-          <div className="bg-white/10 backdrop-blur-md p-6 md:p-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="bg-white/10 backdrop-blur-md p-4 sm:p-6 md:p-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
               <Select value={propertyType} onValueChange={setPropertyType}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white h-14 text-sm">
-                  <SelectValue placeholder="Tip Nekretnine" />
+                <SelectTrigger className="bg-white/10 border-white/20 text-white h-12 sm:h-14 text-xs sm:text-sm">
+                  <SelectValue placeholder="Tip" />
                 </SelectTrigger>
                 <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
                   <SelectItem value="apartman">Apartman</SelectItem>
@@ -119,7 +119,7 @@ export default function HeroSection() {
               </Select>
 
               <Select value={priceRange} onValueChange={setPriceRange}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white h-14 text-sm">
+                <SelectTrigger className="bg-white/10 border-white/20 text-white h-12 sm:h-14 text-xs sm:text-sm">
                   <SelectValue placeholder="Cijena" />
                 </SelectTrigger>
                 <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
@@ -132,8 +132,8 @@ export default function HeroSection() {
               </Select>
 
               <Select value={bedrooms} onValueChange={setBedrooms}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white h-14 text-sm">
-                  <SelectValue placeholder="Broj Soba" />
+                <SelectTrigger className="bg-white/10 border-white/20 text-white h-12 sm:h-14 text-xs sm:text-sm">
+                  <SelectValue placeholder="Sobe" />
                 </SelectTrigger>
                 <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
                   <SelectItem value="1">1 Soba</SelectItem>
@@ -146,10 +146,11 @@ export default function HeroSection() {
 
               <Button 
                 onClick={handleSearch}
-                className="h-14 bg-[#d4af37] hover:bg-[#b8960c] text-black font-medium tracking-wider uppercase"
+                className="col-span-2 md:col-span-1 h-12 sm:h-14 bg-[#d4af37] hover:bg-[#b8960c] text-black font-medium tracking-wider uppercase text-xs sm:text-sm"
               >
-                <Search className="w-5 h-5 mr-2" />
-                Pretraži
+                <Search className="w-4 h-4 sm:w-5 sm:h-5 sm:mr-2" />
+                <span className="hidden sm:inline">Pretraži</span>
+                <span className="sm:hidden">Traži</span>
               </Button>
             </div>
           </div>
