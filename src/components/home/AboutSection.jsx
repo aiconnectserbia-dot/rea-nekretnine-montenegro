@@ -32,7 +32,7 @@ export default function AboutSection() {
               <img 
                 src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop"
                 alt="Luxury Interior"
-                className="w-full h-[500px] object-cover"
+                className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover border-2 border-[#d4af37]/40 lg:border-none"
               />
               <div className="absolute -bottom-6 -right-6 w-48 h-48 border-2 border-[#d4af37] hidden lg:block" />
             </div>
