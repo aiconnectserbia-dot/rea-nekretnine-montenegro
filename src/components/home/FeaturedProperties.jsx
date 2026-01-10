@@ -71,7 +71,7 @@ export default function FeaturedProperties({ properties }) {
                 className="group block bg-[#0a0a0a] overflow-hidden"
               >
                 {/* Image */}
-                <div className="relative h-[180px] sm:h-[300px] overflow-hidden">
+<parameter name="relative h-[180px] sm:h-[280px] lg:h-[320px] overflow-hidden">
                   <img 
                     src={property.image_url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075'}
                     alt={property.title}
@@ -95,11 +95,11 @@ export default function FeaturedProperties({ properties }) {
                 </div>
 
                 {/* Content */}
-                <div className="p-3 sm:p-6">
+                <div className="p-3 sm:p-6 lg:h-[200px] flex flex-col">
                   <span className="text-[#d4af37] text-[9px] sm:text-xs tracking-[0.15em] uppercase">
                     {getPropertyTypeLabel(property.property_type)}
                   </span>
-                  <h3 className="text-sm sm:text-xl font-light text-white mt-1 sm:mt-2 mb-2 sm:mb-3 group-hover:text-[#d4af37] transition-colors line-clamp-2">
+                  <h3 className="text-sm sm:text-xl font-light text-white mt-1 sm:mt-2 mb-2 sm:mb-3 group-hover:text-[#d4af37] transition-colors line-clamp-2 flex-shrink-0">
                     {property.title}
                   </h3>
                   
@@ -109,7 +109,7 @@ export default function FeaturedProperties({ properties }) {
                   </div>
 
                   {/* Specs */}
-                  <div className="flex items-center gap-3 sm:gap-6 pt-2 sm:pt-4 border-t border-white/10">
+                  <div className="flex items-center gap-3 sm:gap-6 pt-2 sm:pt-4 border-t border-white/10 mt-auto">
                     {property.bedrooms && (
                       <div className="flex items-center gap-1 sm:gap-2 text-white/60">
                         <Bed className="w-3 h-3 sm:w-4 sm:h-4" />
