@@ -199,7 +199,7 @@ export default function Layout({ children, currentPageName }) {
                   <p className="text-xs tracking-[0.3em] text-[#d4af37] uppercase">Real Estate</p>
                 </div>
               </div>
-              <p className="text-white/60 text-sm leading-relaxed" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+              <p className="text-white/60 text-sm leading-relaxed" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
                 Vaš pouzdani partner za luksuzne nekretnine u Crnoj Gori. Otkrijte savršen dom na obali Jadrana.
               </p>
             </div>

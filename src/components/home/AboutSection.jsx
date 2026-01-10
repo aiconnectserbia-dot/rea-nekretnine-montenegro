@@ -67,13 +67,13 @@ export default function AboutSection() {
               <span className="gold-text font-serif italic"> na Jadranu</span>
             </h2>
             
-            <p className="text-white/70 text-lg leading-relaxed mb-6" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+            <p className="text-white/70 text-lg leading-relaxed mb-6" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
               Montenegro Real Estate je vodeća agencija za luksuzne nekretnine u Crnoj Gori. 
               Sa više od 15 godina iskustva, pomažemo klijentima iz cijelog svijeta da pronađu 
               svoj savršen dom na obali Jadrana.
             </p>
             
-            <p className="text-white/60 leading-relaxed mb-8" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+            <p className="text-white/60 leading-relaxed mb-8" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
               Naš tim stručnjaka poznaje svaki kutak crnogorskog primorja i pruža 
               personalizovanu uslugu prilagođenu vašim potrebama. Od luksuznih vila 
               do ekskluzivnih apartmana, tu smo da vam pomognemo u svakom koraku.

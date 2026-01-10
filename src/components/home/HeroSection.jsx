@@ -64,7 +64,7 @@ export default function HeroSection() {
             <span className="gold-text font-serif italic">u Crnoj Gori</span>
           </h1>
           
-          <p className="text-white/70 text-sm sm:text-base md:text-xl max-w-md sm:max-w-xl md:max-w-2xl mx-auto leading-relaxed px-4 sm:px-0" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+          <p className="text-white/70 text-sm sm:text-base md:text-xl max-w-md sm:max-w-xl md:max-w-2xl mx-auto leading-relaxed px-4 sm:px-0" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
             Otkrijte najekskluzivnije nekretnine na crnogorskoj obali. 
             Vaš savršen dom čeka vas.
           </p>

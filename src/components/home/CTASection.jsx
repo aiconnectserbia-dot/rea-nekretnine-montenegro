@@ -41,7 +41,7 @@ export default function CTASection() {
             <span className="gold-text font-serif italic"> Savršen Dom</span>
           </h2>
           
-          <p className="text-white/70 text-lg max-w-2xl mx-auto mb-10" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+          <p className="text-white/70 text-lg max-w-2xl mx-auto mb-10" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
             Naš tim stručnjaka je tu da vam pomogne u pronalasku idealne nekretnine. 
             Kontaktirajte nas danas za besplatnu konsultaciju.
           </p>
