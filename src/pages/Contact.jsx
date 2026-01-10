@@ -86,7 +86,7 @@ export default function Contact() {
               <span className="gold-text font-serif italic"> Kontakt</span>
             </h1>
             
-            <p className="text-white/70 text-lg max-w-2xl mx-auto">
+            <p className="text-white/70 text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
               Naš tim je tu da odgovori na sva vaša pitanja i pomogne vam u pronalasku 
               savršene nekretnine u Crnoj Gori.
             </p>
@@ -149,7 +149,7 @@ export default function Contact() {
                     <Check className="w-8 h-8 text-black" />
                   </div>
                   <h3 className="text-2xl font-light text-white mb-4">Hvala Vam!</h3>
-                  <p className="text-white/60 mb-6">
+                  <p className="text-white/60 mb-6" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
                     Vaša poruka je uspješno poslana. Odgovorićemo vam u najkraćem mogućem roku.
                   </p>
                   <Button

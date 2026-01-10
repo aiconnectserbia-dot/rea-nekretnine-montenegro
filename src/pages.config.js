@@ -1,19 +1,19 @@
+import About from './pages/About';
+import AdminPanel from './pages/AdminPanel';
+import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Properties from './pages/Properties';
 import PropertyDetail from './pages/PropertyDetail';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import AdminPanel from './pages/AdminPanel';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
+    "About": About,
+    "AdminPanel": AdminPanel,
+    "Contact": Contact,
     "Home": Home,
     "Properties": Properties,
     "PropertyDetail": PropertyDetail,
-    "About": About,
-    "Contact": Contact,
-    "AdminPanel": AdminPanel,
 }
 
 export const pagesConfig = {

@@ -60,7 +60,7 @@ export default function About() {
               <span className="gold-text font-serif italic"> Luksuzne Nekretnine</span>
             </h1>
             
-            <p className="text-white/70 text-lg max-w-3xl mx-auto">
+            <p className="text-white/70 text-lg max-w-3xl mx-auto" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
               Montenegro Real Estate je vodeća agencija za luksuzne nekretnine u Crnoj Gori, 
               posvećena pružanju izuzetne usluge klijentima iz cijelog svijeta.
             </p>
@@ -124,19 +124,19 @@ export default function About() {
                 <span className="gold-text font-serif italic"> Izvrsnosti</span>
               </h2>
               
-              <p className="text-white/70 text-lg leading-relaxed mb-6">
+              <p className="text-white/70 text-lg leading-relaxed mb-6" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
                 Osnovani 2008. godine, Montenegro Real Estate je izrastao u najprepoznatljivije 
                 ime u industriji luksuznih nekretnina u Crnoj Gori.
               </p>
-              
-              <p className="text-white/60 leading-relaxed mb-6">
+
+              <p className="text-white/60 leading-relaxed mb-6" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
                 Naš tim iskusnih profesionalaca poznaje svaki detalj crnogorskog tržišta nekretnina. 
                 Bilo da tražite luksuzni apartman u Porto Montenegru, vilu sa pogledom na more u 
                 Boki Kotorskoj, ili investicionu priliku u rastućem turističkom sektoru - mi smo tu 
                 da vam pomognemo.
               </p>
 
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-white/60 leading-relaxed" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
                 Ponosni smo na našu reputaciju pouzdanog partnera za klijente iz više od 50 zemalja, 
                 koji nam vjeruju da će pronaći svoj savršen dom na obali Jadrana.
               </p>
@@ -177,7 +177,7 @@ export default function About() {
               >
                 <value.icon className="w-10 h-10 text-[#d4af37] mb-6" />
                 <h3 className="text-xl font-light text-white mb-4">{value.title}</h3>
-                <p className="text-white/60 leading-relaxed">{value.description}</p>
+                <p className="text-white/60 leading-relaxed" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -196,7 +196,7 @@ export default function About() {
               Spremni da Pronađete
               <span className="gold-text font-serif italic"> Vaš Dom?</span>
             </h2>
-            <p className="text-white/60 text-lg mb-10 max-w-2xl mx-auto">
+            <p className="text-white/60 text-lg mb-10 max-w-2xl mx-auto" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
               Kontaktirajte nas danas i dozvolite nam da vam pomognemo u pronalasku 
               savršene nekretnine u Crnoj Gori.
             </p>

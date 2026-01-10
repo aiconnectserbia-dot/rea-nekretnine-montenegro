@@ -87,7 +87,7 @@ export default function Properties() {
               Sve
               <span className="gold-text font-serif italic"> Nekretnine</span>
             </h1>
-            <p className="mt-4 text-white/60 max-w-xl mx-auto">
+            <p className="mt-4 text-white/60 max-w-xl mx-auto" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
               Pregledajte našu kompletnu ponudu luksuznih nekretnina u Crnoj Gori
             </p>
           </motion.div>
