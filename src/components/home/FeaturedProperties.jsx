@@ -6,7 +6,8 @@ import { ArrowRight, Bed, Bath, Maximize2, MapPin } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 export default function FeaturedProperties({ properties }) {
-  if (!properties || properties.length === 0) return null;
+  const activeProperties = properties?.filter(p => !p.is_deleted) || [];
+  if (!activeProperties || activeProperties.length === 0) return null;
 
   const formatPrice = (price, priceOnRequest) => {
     if (priceOnRequest) return 'Cijena na upit';
@@ -57,7 +58,7 @@ export default function FeaturedProperties({ properties }) {
 
         {/* Properties Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-          {properties.slice(0, 6).map((property, index) => (
+          {activeProperties.slice(0, 6).map((property, index) => (
             <motion.div
               key={property.id}
               initial={{ opacity: 0, y: 20 }}

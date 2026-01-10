@@ -21,7 +21,9 @@ export default function Home() {
     enabled: properties.length === 0,
   });
 
-  const displayProperties = properties.length > 0 ? properties : latestProperties;
+  const activeProperties = properties.filter(p => !p.is_deleted);
+  const activeLatestProperties = latestProperties.filter(p => !p.is_deleted);
+  const displayProperties = activeProperties.length > 0 ? activeProperties : activeLatestProperties;
 
   return (
     <div>
