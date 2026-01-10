@@ -78,10 +78,10 @@ export default function HeroSection() {
           className="max-w-5xl mx-auto"
         >
           {/* Tabs */}
-          <div className="flex justify-center gap-0 mb-0">
+          <div className="flex justify-center gap-1 sm:gap-0 mb-0">
             <button
               onClick={() => setListingType('prodaja')}
-              className={`px-10 py-4 text-sm tracking-wider uppercase transition-all ${
+              className={`flex-1 sm:flex-none px-6 sm:px-10 py-3 sm:py-4 text-xs sm:text-sm tracking-wider uppercase transition-all ${
                 listingType === 'prodaja'
                   ? 'bg-[#d4af37] text-black'
                   : 'bg-white/10 text-white hover:bg-white/20'
@@ -91,7 +91,7 @@ export default function HeroSection() {
             </button>
             <button
               onClick={() => setListingType('iznajmljivanje')}
-              className={`px-10 py-4 text-sm tracking-wider uppercase transition-all ${
+              className={`flex-1 sm:flex-none px-6 sm:px-10 py-3 sm:py-4 text-xs sm:text-sm tracking-wider uppercase transition-all ${
                 listingType === 'iznajmljivanje'
                   ? 'bg-[#d4af37] text-black'
                   : 'bg-white/10 text-white hover:bg-white/20'
@@ -102,11 +102,11 @@ export default function HeroSection() {
           </div>
 
           {/* Search Fields */}
-          <div className="bg-white/10 backdrop-blur-md p-4 sm:p-6 md:p-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="bg-white/10 backdrop-blur-md p-3 sm:p-6 md:p-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
               <Select value={propertyType} onValueChange={setPropertyType}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white h-12 sm:h-14 text-xs sm:text-sm">
-                  <SelectValue placeholder="Tip" />
+                <SelectTrigger className="bg-white/10 border-white/20 text-white h-11 sm:h-14 text-xs sm:text-sm">
+                  <SelectValue placeholder="Tip Nekretnine" />
                 </SelectTrigger>
                 <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
                   <SelectItem value="apartman">Apartman</SelectItem>
@@ -119,8 +119,8 @@ export default function HeroSection() {
               </Select>
 
               <Select value={priceRange} onValueChange={setPriceRange}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white h-12 sm:h-14 text-xs sm:text-sm">
-                  <SelectValue placeholder="Cijena" />
+                <SelectTrigger className="bg-white/10 border-white/20 text-white h-11 sm:h-14 text-xs sm:text-sm">
+                  <SelectValue placeholder="Raspon Cijene" />
                 </SelectTrigger>
                 <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
                   <SelectItem value="100000-500000">100.000€ - 500.000€</SelectItem>
@@ -132,8 +132,8 @@ export default function HeroSection() {
               </Select>
 
               <Select value={bedrooms} onValueChange={setBedrooms}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white h-12 sm:h-14 text-xs sm:text-sm">
-                  <SelectValue placeholder="Sobe" />
+                <SelectTrigger className="bg-white/10 border-white/20 text-white h-11 sm:h-14 text-xs sm:text-sm">
+                  <SelectValue placeholder="Broj Soba" />
                 </SelectTrigger>
                 <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
                   <SelectItem value="1">1 Soba</SelectItem>
@@ -146,11 +146,10 @@ export default function HeroSection() {
 
               <Button 
                 onClick={handleSearch}
-                className="col-span-2 md:col-span-1 h-12 sm:h-14 bg-[#d4af37] hover:bg-[#b8960c] text-black font-medium tracking-wider uppercase text-xs sm:text-sm"
+                className="h-11 sm:h-14 bg-[#d4af37] hover:bg-[#b8960c] text-black font-medium tracking-wider uppercase text-xs sm:text-sm"
               >
-                <Search className="w-4 h-4 sm:w-5 sm:h-5 sm:mr-2" />
-                <span className="hidden sm:inline">Pretraži</span>
-                <span className="sm:hidden">Traži</span>
+                <Search className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                Pretraži
               </Button>
             </div>
           </div>
