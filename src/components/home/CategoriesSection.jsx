@@ -57,7 +57,7 @@ export default function CategoriesSection() {
             Premium Lokacije u
             <span className="gold-text font-serif italic"> Crnoj Gori</span>
           </h2>
-          <p className="mt-4 text-white/60 max-w-2xl mx-auto">
+          <p className="mt-4 text-white/60 max-w-2xl mx-auto" style={{ fontFamily: "'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
             Istražite najekskluzivnije lokacije i projekte na crnogorskom primorju
           </p>
         </motion.div>
