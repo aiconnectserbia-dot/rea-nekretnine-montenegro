@@ -139,9 +139,14 @@ export default function Layout({ children, currentPageName }) {
             {/* Mobile Menu Button */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-white"
+              className="lg:hidden p-2 text-white relative z-50"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <motion.div
+                animate={mobileMenuOpen ? { rotate: 180 } : { rotate: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </motion.div>
             </button>
           </div>
         </div>
@@ -149,34 +154,91 @@ export default function Layout({ children, currentPageName }) {
         {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-[#0a0a0a] border-t border-[#d4af37]/20"
-            >
-              <nav className="px-6 py-6 space-y-4">
-                {adminNavLinks.map((link) => (
-                  <Link
-                    key={link.page}
-                    to={createPageUrl(link.page)}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center gap-2 py-2 text-lg tracking-wider uppercase ${
-                      currentPageName === link.page ? 'text-[#d4af37]' : 'text-white/80'
-                    }`}
-                  >
-                    {link.icon && <link.icon className="w-5 h-5" />}
-                    {link.name}
-                  </Link>
-                ))}
-                <div className="pt-4 border-t border-white/10">
-                  <a href="tel:+38269123456" className="flex items-center gap-2 text-[#d4af37]">
-                    <Phone className="w-4 h-4" />
-                    <span>+382 69 123 456</span>
-                  </a>
+            <>
+              {/* Overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setMobileMenuOpen(false)}
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+              />
+              
+              {/* Slide-in Menu */}
+              <motion.div
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-[#0a0a0a]/98 backdrop-blur-xl border-l border-[#d4af37]/20 z-50 lg:hidden overflow-y-auto"
+              >
+                <div className="relative h-full flex flex-col">
+                  {/* Menu Header */}
+                  <div className="px-6 py-8 border-b border-[#d4af37]/10">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 border-2 border-[#d4af37] flex items-center justify-center">
+                        <span className="text-[#d4af37] font-serif text-xl font-bold">M</span>
+                      </div>
+                      <div>
+                        <h2 className="text-base font-light tracking-[0.3em] text-white uppercase">Montenegro</h2>
+                        <p className="text-[9px] tracking-[0.4em] text-[#d4af37] uppercase">Real Estate</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Menu Links */}
+                  <nav className="flex-1 px-6 py-8 space-y-2">
+                    {adminNavLinks.map((link, index) => (
+                      <motion.div
+                        key={link.page}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        <Link
+                          to={createPageUrl(link.page)}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`flex items-center gap-3 px-4 py-4 rounded-lg transition-all duration-300 ${
+                            currentPageName === link.page 
+                              ? 'bg-[#d4af37]/10 text-[#d4af37] border border-[#d4af37]/30' 
+                              : 'text-white/80 hover:bg-white/5 hover:text-white border border-transparent'
+                          }`}
+                        >
+                          {link.icon && <link.icon className="w-5 h-5 flex-shrink-0" />}
+                          <span className="text-base tracking-wider uppercase">{link.name}</span>
+                          {currentPageName === link.page && (
+                            <motion.div
+                              layoutId="mobileDot"
+                              className="ml-auto w-2 h-2 rounded-full bg-[#d4af37]"
+                            />
+                          )}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </nav>
+
+                  {/* Menu Footer */}
+                  <div className="px-6 py-6 border-t border-[#d4af37]/10 space-y-4">
+                    <div className="text-xs tracking-widest uppercase text-white/40 mb-3">Kontakt</div>
+                    <a 
+                      href="tel:+38269123456" 
+                      className="flex items-center gap-3 px-4 py-3 bg-[#d4af37]/10 rounded-lg hover:bg-[#d4af37]/20 transition-colors"
+                    >
+                      <Phone className="w-4 h-4 text-[#d4af37]" />
+                      <span className="text-white text-sm">+382 69 123 456</span>
+                    </a>
+                    <a 
+                      href="mailto:info@montenegro-realestate.me" 
+                      className="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                    >
+                      <Mail className="w-4 h-4 text-[#d4af37]" />
+                      <span className="text-white/70 text-sm">Email</span>
+                    </a>
+                  </div>
                 </div>
-              </nav>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </header>
