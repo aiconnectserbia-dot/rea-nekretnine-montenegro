@@ -70,7 +70,7 @@ export default function FeaturedProperties({ properties }) {
                 className="group block bg-[#0a0a0a] overflow-hidden"
               >
                 {/* Image */}
-                <div className="relative h-[300px] overflow-hidden">
+                <div className="relative h-[180px] sm:h-[300px] overflow-hidden">
                   <img 
                     src={property.image_url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075'}
                     alt={property.title}
@@ -79,52 +79,52 @@ export default function FeaturedProperties({ properties }) {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   
                   {/* Tag */}
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-[#d4af37] text-black text-xs tracking-wider uppercase">
+                  <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
+                    <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-[#d4af37] text-black text-[9px] sm:text-xs tracking-wider uppercase">
                       {property.listing_type === 'iznajmljivanje' ? 'Iznajmljivanje' : 'Prodaja'}
                     </span>
                   </div>
 
                   {/* Price */}
-                  <div className="absolute bottom-4 left-4">
-                    <p className="text-2xl font-light text-white">
+                  <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4">
+                    <p className="text-base sm:text-2xl font-light text-white">
                       {formatPrice(property.price, property.price_on_request)}
                     </p>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <span className="text-[#d4af37] text-xs tracking-[0.15em] uppercase">
+                <div className="p-3 sm:p-6">
+                  <span className="text-[#d4af37] text-[9px] sm:text-xs tracking-[0.15em] uppercase">
                     {getPropertyTypeLabel(property.property_type)}
                   </span>
-                  <h3 className="text-xl font-light text-white mt-2 mb-3 group-hover:text-[#d4af37] transition-colors">
+                  <h3 className="text-sm sm:text-xl font-light text-white mt-1 sm:mt-2 mb-2 sm:mb-3 group-hover:text-[#d4af37] transition-colors line-clamp-2">
                     {property.title}
                   </h3>
                   
-                  <div className="flex items-center gap-2 text-white/60 text-sm mb-4">
-                    <MapPin className="w-4 h-4" />
-                    <span>{property.location}{property.region ? `, ${property.region}` : ''}</span>
+                  <div className="flex items-center gap-1 sm:gap-2 text-white/60 text-xs sm:text-sm mb-2 sm:mb-4">
+                    <MapPin className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                    <span className="truncate">{property.location}{property.region ? `, ${property.region}` : ''}</span>
                   </div>
 
                   {/* Specs */}
-                  <div className="flex items-center gap-6 pt-4 border-t border-white/10">
+                  <div className="flex items-center gap-3 sm:gap-6 pt-2 sm:pt-4 border-t border-white/10">
                     {property.bedrooms && (
-                      <div className="flex items-center gap-2 text-white/60">
-                        <Bed className="w-4 h-4" />
-                        <span className="text-sm">{property.bedrooms}</span>
+                      <div className="flex items-center gap-1 sm:gap-2 text-white/60">
+                        <Bed className="w-3 h-3 sm:w-4 sm:h-4" />
+                        <span className="text-xs sm:text-sm">{property.bedrooms}</span>
                       </div>
                     )}
                     {property.bathrooms && (
-                      <div className="flex items-center gap-2 text-white/60">
-                        <Bath className="w-4 h-4" />
-                        <span className="text-sm">{property.bathrooms}</span>
+                      <div className="flex items-center gap-1 sm:gap-2 text-white/60">
+                        <Bath className="w-3 h-3 sm:w-4 sm:h-4" />
+                        <span className="text-xs sm:text-sm">{property.bathrooms}</span>
                       </div>
                     )}
                     {property.area && (
-                      <div className="flex items-center gap-2 text-white/60">
-                        <Maximize2 className="w-4 h-4" />
-                        <span className="text-sm">{property.area} m²</span>
+                      <div className="flex items-center gap-1 sm:gap-2 text-white/60">
+                        <Maximize2 className="w-3 h-3 sm:w-4 sm:h-4" />
+                        <span className="text-xs sm:text-sm">{property.area} m²</span>
                       </div>
                     )}
                   </div>
