@@ -71,7 +71,7 @@ export default function FeaturedProperties({ properties }) {
                 className="group block bg-[#0a0a0a] overflow-hidden"
               >
                 {/* Image */}
-<parameter name="relative h-[180px] sm:h-[280px] lg:h-[320px] overflow-hidden">
+                <div className="relative h-[180px] sm:h-[280px] lg:h-[320px] overflow-hidden">
                   <img 
                     src={property.image_url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075'}
                     alt={property.title}
