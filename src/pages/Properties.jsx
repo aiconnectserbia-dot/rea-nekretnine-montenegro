@@ -26,12 +26,10 @@ export default function Properties() {
     setFilters(initialFilters);
   }, []);
 
-  const { data: allProperties = [], isLoading } = useQuery({
+  const { data: properties = [], isLoading } = useQuery({
     queryKey: ['properties'],
-    queryFn: () => base44.entities.Property.list('-created_date'),
+    queryFn: () => base44.entities.Property.filter({ is_deleted: false }, '-created_date'),
   });
-
-  const properties = allProperties.filter(p => !p.is_deleted);
 
   // Filter properties
   const filteredProperties = properties.filter(property => {
