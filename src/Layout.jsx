@@ -4,6 +4,7 @@ import { createPageUrl } from './utils';
 import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function Layout({ children, currentPageName }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,6 +45,7 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
+      <ScrollToTop />
       <style>{`
         :root {
           --gold: #d4af37;
