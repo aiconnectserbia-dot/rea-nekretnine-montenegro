@@ -78,7 +78,7 @@ export default function HeroSection() {
           className="max-w-5xl mx-auto"
         >
           {/* Tabs */}
-          <div className="flex justify-center gap-1 sm:gap-0 mb-0">
+          <div className="flex justify-center mb-0">
             <button
               onClick={() => setListingType('prodaja')}
               className={`flex-1 sm:flex-none px-6 sm:px-10 py-3 sm:py-4 text-xs sm:text-sm tracking-wider uppercase transition-all ${
