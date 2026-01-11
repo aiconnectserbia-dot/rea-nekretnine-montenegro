@@ -93,14 +93,14 @@ export default function Layout({ children, currentPageName }) {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to={createPageUrl('Home')} className="flex items-center gap-3">
-              <div className="relative">
-                <div className="w-10 h-10 border-2 border-[#d4af37] flex items-center justify-center">
-                  <span className="text-[#d4af37] font-serif text-xl font-bold">M</span>
-                </div>
-              </div>
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/bd5fc2a32_Photoroom_20260109_215650.png" 
+                alt="REA Nekretnine" 
+                className="h-12 w-12 object-contain"
+              />
               <div className="hidden sm:block">
-                <h1 className="text-lg font-light tracking-[0.3em] text-white uppercase">Montenegro</h1>
-                <p className="text-[10px] tracking-[0.5em] text-[#d4af37] uppercase">Real Estate</p>
+                <h1 className="text-lg font-light tracking-[0.2em] text-white uppercase">REA Nekretnine</h1>
+                <p className="text-[10px] tracking-[0.3em] text-[#d4af37] uppercase">Montenegro</p>
               </div>
             </Link>
 
@@ -177,12 +177,14 @@ export default function Layout({ children, currentPageName }) {
                   {/* Menu Header */}
                   <div className="px-6 py-8 border-b border-[#d4af37]/10">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 border-2 border-[#d4af37] flex items-center justify-center">
-                        <span className="text-[#d4af37] font-serif text-xl font-bold">M</span>
-                      </div>
+                      <img 
+                        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/bd5fc2a32_Photoroom_20260109_215650.png" 
+                        alt="REA Nekretnine" 
+                        className="h-12 w-12 object-contain"
+                      />
                       <div>
-                        <h2 className="text-base font-light tracking-[0.3em] text-white uppercase">Montenegro</h2>
-                        <p className="text-[9px] tracking-[0.4em] text-[#d4af37] uppercase">Real Estate</p>
+                        <h2 className="text-base font-light tracking-[0.2em] text-white uppercase">REA Nekretnine</h2>
+                        <p className="text-[9px] tracking-[0.3em] text-[#d4af37] uppercase">Montenegro</p>
                       </div>
                     </div>
                   </div>
@@ -253,12 +255,14 @@ export default function Layout({ children, currentPageName }) {
             {/* Brand */}
             <div className="space-y-6">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 border-2 border-[#d4af37] flex items-center justify-center">
-                  <span className="text-[#d4af37] font-serif text-2xl font-bold">M</span>
-                </div>
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/bd5fc2a32_Photoroom_20260109_215650.png" 
+                  alt="REA Nekretnine" 
+                  className="h-14 w-14 object-contain"
+                />
                 <div>
-                  <h3 className="text-lg font-light tracking-[0.2em] uppercase">Montenegro</h3>
-                  <p className="text-xs tracking-[0.3em] text-[#d4af37] uppercase">Real Estate</p>
+                  <h3 className="text-lg font-light tracking-[0.2em] uppercase">REA Nekretnine</h3>
+                  <p className="text-xs tracking-[0.3em] text-[#d4af37] uppercase">Montenegro</p>
                 </div>
               </div>
               <p className="text-white/60 text-sm leading-relaxed" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
@@ -322,7 +326,7 @@ export default function Layout({ children, currentPageName }) {
           {/* Bottom Bar */}
           <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-white/40 text-sm">
-              © 2024 Montenegro Real Estate. Sva prava zadržana.
+              © 2026 REA Nekretnine. Sva prava zadržana.
             </p>
             <div className="flex items-center gap-4">
               <a href="#" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-[#d4af37] hover:text-[#d4af37] transition-colors">
