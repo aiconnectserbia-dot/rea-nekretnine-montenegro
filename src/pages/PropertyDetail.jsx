@@ -58,7 +58,7 @@ export default function PropertyDetail() {
     );
   }
 
-  if (!property) {
+  if (!property || property.is_deleted) {
     return (
       <div className="min-h-screen pt-32 text-center">
         <p className="text-white/60 text-lg mb-4">Nekretnina nije pronađena</p>
