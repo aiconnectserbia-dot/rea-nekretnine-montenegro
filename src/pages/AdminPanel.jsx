@@ -83,10 +83,10 @@ export default function AdminPanel() {
     checkAdmin();
   }, []);
 
-  // Fetch all properties
+  // Fetch all properties (excluding deleted ones)
   const { data: properties = [], isLoading: propertiesLoading } = useQuery({
     queryKey: ['admin-properties'],
-    queryFn: () => base44.entities.Property.list('-created_date'),
+    queryFn: () => base44.entities.Property.filter({ is_deleted: false }, '-created_date'),
     enabled: !!user && user.role === 'admin'
   });
 
@@ -407,26 +407,17 @@ export default function AdminPanel() {
                           {property.price_on_request ? 'Na upit' : formatPrice(property.price)}
                         </TableCell>
                         <TableCell>
-                          <div className="flex flex-col gap-1">
-                            {property.is_deleted && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 bg-red-500/20 text-red-400 text-xs">
-                                <AlertCircle className="w-3 h-3" />
-                                Obrisano
-                              </span>
-                            )}
-                            {property.is_sold && !property.is_deleted && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 text-xs">
-                                <CheckCircle className="w-3 h-3" />
-                                Prodato
-                              </span>
-                            )}
-                            {!property.is_sold && !property.is_deleted && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-500/20 text-blue-400 text-xs">
-                                <ShoppingBag className="w-3 h-3" />
-                                Dostupno
-                              </span>
-                            )}
-                          </div>
+                          {property.is_sold ? (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 text-xs">
+                              <CheckCircle className="w-3 h-3" />
+                              Prodato
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-500/20 text-blue-400 text-xs">
+                              <ShoppingBag className="w-3 h-3" />
+                              Dostupno
+                            </span>
+                          )}
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center justify-end gap-2">
