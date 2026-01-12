@@ -6,10 +6,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import ScrollToTop from './components/ScrollToTop';
 
+import AdminPasswordModal from './components/AdminPasswordModal';
+
 export default function Layout({ children, currentPageName }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -208,33 +211,79 @@ export default function Layout({ children, currentPageName }) {
 
                   {/* Menu Links */}
                   <nav className="flex-1 px-6 py-8 space-y-2">
-                    {adminNavLinks.map((link, index) => (
-                      <motion.div
-                        key={link.page}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <Link
-                          to={createPageUrl(link.page)}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className={`flex items-center gap-3 px-4 py-4 rounded-lg transition-all duration-300 ${
-                            currentPageName === link.page 
-                              ? 'bg-[#d4af37]/10 text-[#d4af37] border border-[#d4af37]/30' 
-                              : 'text-white/80 hover:bg-white/5 hover:text-white border border-transparent'
-                          }`}
+                    {navLinks.map((link, index) => (
+                        <motion.div
+                          key={link.page}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
                         >
-                          {link.icon && <link.icon className="w-5 h-5 flex-shrink-0" />}
-                          <span className="text-base tracking-wider uppercase">{link.name}</span>
-                          {currentPageName === link.page && (
-                            <motion.div
-                              layoutId="mobileDot"
-                              className="ml-auto w-2 h-2 rounded-full bg-[#d4af37]"
-                            />
-                          )}
-                        </Link>
-                      </motion.div>
-                    ))}
+                          <Link
+                            to={createPageUrl(link.page)}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={`flex items-center gap-3 px-4 py-4 rounded-lg transition-all duration-300 ${
+                              currentPageName === link.page 
+                                ? 'bg-[#d4af37]/10 text-[#d4af37] border border-[#d4af37]/30' 
+                                : 'text-white/80 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                          >
+                            {link.icon && <link.icon className="w-5 h-5 flex-shrink-0" />}
+                            <span className="text-base tracking-wider uppercase">{link.name}</span>
+                            {currentPageName === link.page && (
+                              <motion.div
+                                layoutId="mobileDot"
+                                className="ml-auto w-2 h-2 rounded-full bg-[#d4af37]"
+                              />
+                            )}
+                          </Link>
+                        </motion.div>
+                      ))}
+                      {isAdmin && (
+                        <motion.div
+                          key="AdminPanel"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: navLinks.length * 0.1 }}
+                        >
+                          <Link
+                            to={createPageUrl('AdminPanel')}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={`flex items-center gap-3 px-4 py-4 rounded-lg transition-all duration-300 ${
+                              currentPageName === 'AdminPanel'
+                                ? 'bg-[#d4af37]/10 text-[#d4af37] border border-[#d4af37]/30'
+                                : 'text-white/80 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                          >
+                            <Shield className="w-5 h-5 flex-shrink-0" />
+                            <span className="text-base tracking-wider uppercase">Admin Panel</span>
+                            {currentPageName === 'AdminPanel' && (
+                              <motion.div
+                                layoutId="mobileDot"
+                                className="ml-auto w-2 h-2 rounded-full bg-[#d4af37]"
+                              />
+                            )}
+                          </Link>
+                        </motion.div>
+                      )}
+                      {!isAdmin && (
+                        <motion.div
+                          key="AdminPassword"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: (navLinks.length + 1) * 0.1 }}
+                        >
+                          <button
+                            onClick={() => {
+                              setShowPasswordModal(true);
+                              setMobileMenuOpen(false);
+                            }}
+                            className="w-full text-left flex items-center gap-3 px-4 py-4 rounded-lg transition-all duration-300 text-white/80 hover:bg-white/5 hover:text-white border border-transparent"
+                          >
+                            <Shield className="w-5 h-5 flex-shrink-0" />
+                            <span className="text-base tracking-wider uppercase">Admin Panel</span>
+                          </button>
+                        </motion.div>
+                      )}
                   </nav>
 
                   {/* Menu Footer */}
@@ -264,6 +313,16 @@ export default function Layout({ children, currentPageName }) {
 
       {/* Main Content */}
       <main>{children}</main>
+
+      {/* Admin Password Modal */}
+      <AdminPasswordModal 
+        isOpen={showPasswordModal}
+        onClose={() => setShowPasswordModal(false)}
+        onSuccess={() => {
+          setShowPasswordModal(false);
+          window.location.href = createPageUrl('AdminPanel');
+        }}
+      />
 
       {/* Footer */}
       <footer className="bg-[#0a0a0a] border-t border-[#d4af37]/20">
