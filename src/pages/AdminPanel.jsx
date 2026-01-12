@@ -294,7 +294,7 @@ export default function AdminPanel() {
     );
   }
 
-  if (!user || user.role !== 'admin') {
+  if (!user || (user.role !== 'admin' && !localStorage.getItem('admin_password_verified'))) {
     return (
       <div className="min-h-screen pt-32 flex items-center justify-center">
         <div className="text-center">
