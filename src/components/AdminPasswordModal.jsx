@@ -14,7 +14,7 @@ export default function AdminPasswordModal({ isOpen, onClose, onSuccess }) {
     setIsLoading(true);
 
     setTimeout(() => {
-      if (password === 'reanekretnine2026') {
+      if (password === 'reanekretnine2026.') {
         localStorage.setItem('admin_password_verified', 'true');
         onSuccess();
         setPassword('');

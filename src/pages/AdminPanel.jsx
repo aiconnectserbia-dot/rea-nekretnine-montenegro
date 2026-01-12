@@ -87,7 +87,7 @@ export default function AdminPanel() {
   const { data: properties = [], isLoading: propertiesLoading } = useQuery({
     queryKey: ['admin-properties'],
     queryFn: () => base44.entities.Property.filter({ is_deleted: false }, '-created_date'),
-    enabled: !!user && user.role === 'admin'
+    enabled: !!user && (user.role === 'admin' || localStorage.getItem('admin_password_verified') === 'true')
   });
 
   const createPropertyMutation = useMutation({
