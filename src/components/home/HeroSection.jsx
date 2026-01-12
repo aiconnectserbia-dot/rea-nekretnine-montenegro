@@ -33,9 +33,9 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
-          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/81c5fb2e5_Gemini_Generated_Image_hohbkohohbkohohb.png"
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/21271f48a_tamnija.png"
           alt="Luxury Property Montenegro"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-left md:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60" />
       </div>
