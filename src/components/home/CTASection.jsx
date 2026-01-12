@@ -54,10 +54,10 @@ export default function CTASection() {
               </Button>
             </Link>
             
-            <a href="tel:+38269123456">
+            <a href="tel:+38267518587">
               <Button variant="outline" className="px-10 py-6 border-2 border-white/30 text-white hover:border-[#d4af37] hover:text-[#d4af37] bg-transparent tracking-wider uppercase">
                 <Phone className="w-4 h-4 mr-2" />
-                +382 69 123 456
+                +382 67 518 587
               </Button>
             </a>
           </div>
