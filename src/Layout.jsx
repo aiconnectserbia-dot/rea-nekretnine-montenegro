@@ -311,8 +311,8 @@ export default function Layout({ children, currentPageName }) {
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-[#d4af37] flex-shrink-0" />
-                  <a href="tel:+38269123456" className="text-white/60 hover:text-[#d4af37] text-sm transition-colors">
-                    +382 69 123 456
+                  <a href="tel:+38267518587" className="text-white/60 hover:text-[#d4af37] text-sm transition-colors">
+                    +382 67 518 587
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
