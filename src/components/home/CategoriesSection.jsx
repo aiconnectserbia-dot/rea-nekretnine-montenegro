@@ -1,8 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '../../utils';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 
 const categories = [
   {
