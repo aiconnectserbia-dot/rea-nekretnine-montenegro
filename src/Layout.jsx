@@ -182,7 +182,7 @@ export default function Layout({ children, currentPageName }) {
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                className="fixed top-0 right-0 w-[85%] max-w-sm h-screen bg-[#0a0a0a]/98 backdrop-blur-xl border-l border-[#d4af37]/20 z-50 lg:hidden overflow-y-auto"
+                className="fixed top-0 right-0 w-[85%] max-w-sm h-screen bg-[#0a0a0a] border-l border-[#d4af37]/20 z-50 lg:hidden overflow-y-auto"
               >
                 <div className="relative h-full flex flex-col">
                   {/* Menu Header */}
