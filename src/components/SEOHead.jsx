@@ -37,6 +37,9 @@ export default function SEOHead({
     updateMetaTag('name', 'geo.region', 'ME');
     updateMetaTag('name', 'geo.placename', 'Montenegro');
     
+    // Google Search Console verification
+    updateMetaTag('name', 'google-site-verification', 'T8zJrT9ZYXNdBAwN5U-HoNzTRWc2CHB1ZRLlJC6a8aY');
+    
     // Canonical URL
     if (canonical) {
       let link = document.querySelector("link[rel='canonical']");
