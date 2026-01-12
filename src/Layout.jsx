@@ -139,15 +139,13 @@ export default function Layout({ children, currentPageName }) {
                 <Phone className="w-4 h-4" />
                 <span className="text-sm">+382 67 518 587</span>
               </a>
-              {isAdmin && (
-                <Link 
-                  to={createPageUrl('AdminPanel')}
-                  className="text-white/20 hover:text-white/40 transition-colors"
-                  title="Admin Panel"
-                >
-                  <Shield className="w-4 h-4" />
-                </Link>
-              )}
+              <button
+                onClick={() => setShowPasswordModal(true)}
+                className="text-white/20 hover:text-white/40 transition-colors"
+                title="Admin Panel"
+              >
+                <Shield className="w-4 h-4" />
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
