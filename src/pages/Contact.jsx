@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useMutation } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, Send, Loader2, Check } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, Loader2, Check, Facebook } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
