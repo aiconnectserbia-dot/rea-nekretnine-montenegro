@@ -2,6 +2,8 @@ import React from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 import HeroSection from '@/components/home/HeroSection';
 import CategoriesSection from '@/components/home/CategoriesSection';
 import FeaturedProperties from '@/components/home/FeaturedProperties';

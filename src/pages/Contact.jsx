@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 const contactInfo = [
   {
@@ -65,6 +67,18 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen pt-24">
+      <SEOHead 
+        title="Kontakt - Rea Nekretnine Montenegro | Kontaktirajte Nas"
+        description="Kontaktirajte Rea Nekretnine Montenegro. Telefon: +382 67 518 587, Email: info@montenegro-realestate.me. Pišite nam za sve informacije o nekretninama u Crnoj Gori."
+        keywords="kontakt, nekretnine crna gora kontakt, agencija kontakt, telefon nekretnine, email nekretnine montenegro"
+      />
+      <StructuredData 
+        type="breadcrumb" 
+        data={[
+          { name: "Početna", url: "/" },
+          { name: "Kontakt", url: "/Contact" }
+        ]} 
+      />
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">

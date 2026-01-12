@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 export default function PropertyDetail() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -96,6 +98,24 @@ export default function PropertyDetail() {
 
   return (
     <div className="min-h-screen pt-20">
+      <SEOHead 
+        title={`${property.title} - ${formatPrice(property.price, property.price_on_request)} | Rea Nekretnine Montenegro`}
+        description={property.description || `${getPropertyTypeLabel(property.property_type)} u ${property.location}${property.region ? `, ${property.region}` : ''}. ${property.bedrooms ? property.bedrooms + ' sobe, ' : ''}${property.area ? property.area + ' m².' : ''}`}
+        keywords={`${property.property_type}, nekretnine ${property.location}, ${property.region}, ${property.listing_type === 'iznajmljivanje' ? 'iznajmljivanje' : 'prodaja'} nekretnina, apartman ${property.location}, vila ${property.region}`}
+        ogImage={property.image_url}
+      />
+      <StructuredData 
+        type="property"
+        data={property}
+      />
+      <StructuredData 
+        type="breadcrumb" 
+        data={[
+          { name: "Početna", url: "/" },
+          { name: "Nekretnine", url: "/Properties" },
+          { name: property.title, url: `/PropertyDetail?id=${property.id}` }
+        ]} 
+      />
       {/* Gallery Modal */}
       <AnimatePresence>
         {showGallery && (

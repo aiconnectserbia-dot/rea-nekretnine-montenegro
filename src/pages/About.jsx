@@ -4,6 +4,8 @@ import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { Award, Users, Building2, Globe, Target, Shield, Star } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 const stats = [
   { icon: Building2, value: '500+', label: 'Nekretnina u Ponudi' },
