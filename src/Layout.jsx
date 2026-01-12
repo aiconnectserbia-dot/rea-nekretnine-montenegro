@@ -132,9 +132,9 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Contact CTA */}
             <div className="hidden lg:flex items-center gap-6">
-              <a href="tel:+38269123456" className="flex items-center gap-2 text-white/70 hover:text-[#d4af37] transition-colors">
+              <a href="tel:+38267518587" className="flex items-center gap-2 text-white/70 hover:text-[#d4af37] transition-colors">
                 <Phone className="w-4 h-4" />
-                <span className="text-sm">+382 69 123 456</span>
+                <span className="text-sm">+382 67 518 587</span>
               </a>
             </div>
 
@@ -226,11 +226,11 @@ export default function Layout({ children, currentPageName }) {
                   <div className="px-6 py-6 border-t border-[#d4af37]/10 space-y-4">
                     <div className="text-xs tracking-widest uppercase text-white/40 mb-3">Kontakt</div>
                     <a 
-                      href="tel:+38269123456" 
+                      href="tel:+38267518587" 
                       className="flex items-center gap-3 px-4 py-3 bg-[#d4af37]/10 rounded-lg hover:bg-[#d4af37]/20 transition-colors"
                     >
                       <Phone className="w-4 h-4 text-[#d4af37]" />
-                      <span className="text-white text-sm">+382 69 123 456</span>
+                      <span className="text-white text-sm">+382 67 518 587</span>
                     </a>
                     <a 
                       href="mailto:info@montenegro-realestate.me" 
