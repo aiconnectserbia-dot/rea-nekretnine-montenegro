@@ -31,12 +31,7 @@ export default function HeroSection() {
         <img 
           src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/a12d535d0_Gemini_Generated_Image_q05wvaq05wvaq05w.png"
           alt="Luxury Property Montenegro"
-          className="hidden md:block w-full h-full object-cover object-center"
-        />
-        <img 
-          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/3b5a1869a_Photoroom_20260112_213942.png"
-          alt="Luxury Property Montenegro Mobile"
-          className="md:hidden w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60" />
       </div>
