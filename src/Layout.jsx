@@ -16,6 +16,11 @@ export default function Layout({ children, currentPageName }) {
 
   useEffect(() => {
     document.title = 'Rea Nekretnine Montenegro';
+    
+    // Disable PWA install prompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+    });
   }, []);
 
   useEffect(() => {
