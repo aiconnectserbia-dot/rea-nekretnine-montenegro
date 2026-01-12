@@ -92,23 +92,19 @@ export default function CategoriesSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Link 
-                to={createPageUrl('Properties') + '?category=' + category.slug}
-                className="group relative block h-[140px] sm:h-[240px] overflow-hidden"
-              >
+              <div className="relative block h-[140px] sm:h-[240px] overflow-hidden">
                 <img 
                   src={category.image}
                   alt={category.name}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                <div className="absolute inset-0 border border-[#d4af37]/0 group-hover:border-[#d4af37]/50 transition-colors duration-500" />
                 
                 <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6">
                   <span className="text-[#d4af37] text-[8px] sm:text-[10px] tracking-[0.2em] uppercase">{category.description}</span>
                   <h3 className="text-sm sm:text-xl font-light text-white mt-0.5 sm:mt-1">{category.name}</h3>
                 </div>
-              </Link>
+              </div>
             </motion.div>
           ))}
         </div>
