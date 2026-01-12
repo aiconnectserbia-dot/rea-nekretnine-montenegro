@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { Grid3X3, List, Loader2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 import PropertyFilters from '@/components/properties/PropertyFilters';
 import PropertyCard from '@/components/properties/PropertyCard';
 
@@ -97,6 +99,18 @@ export default function Properties() {
 
   return (
     <div className="min-h-screen pt-24 pb-16">
+      <SEOHead 
+        title="Sve Nekretnine - Apartmani, Vile i Kuće u Crnoj Gori | Rea Nekretnine"
+        description="Pregledajte kompletnu ponudu luksuznih nekretnina u Crnoj Gori. Apartmani i vile u Porto Montenegro, Luštica Bay, Tivat, Budva, Kotor. Najbolje lokacije na Jadranu."
+        keywords="nekretnine crna gora, apartmani porto montenegro, vile lustica bay, nekretnine tivat, budva apartmani, kotor nekretnine, prodaja nekretnina, luksuzni stanovi crna gora"
+      />
+      <StructuredData 
+        type="breadcrumb" 
+        data={[
+          { name: "Početna", url: "/" },
+          { name: "Nekretnine", url: "/Properties" }
+        ]} 
+      />
       {/* Header */}
       <div className="bg-[#1a1a1a] py-16 mb-8">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">

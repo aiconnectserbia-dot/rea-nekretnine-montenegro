@@ -33,6 +33,18 @@ const values = [
 export default function About() {
   return (
     <div className="min-h-screen pt-24">
+      <SEOHead 
+        title="O Nama - Rea Nekretnine Montenegro | Ekspertiza u Luksuznim Nekretninama"
+        description="Upoznajte Rea Nekretnine Montenegro - vašeg pouzdanog partnera za luksuzne nekretnine. Preko 15 godina iskustva, 500+ zadovoljnih klijenata, najbolje lokacije u Crnoj Gori."
+        keywords="o nama, agencija za nekretnine crna gora, eksperti nekretnine, profesionalna agencija, nekretnine montenegro, pouzdana agencija"
+      />
+      <StructuredData 
+        type="breadcrumb" 
+        data={[
+          { name: "Početna", url: "/" },
+          { name: "O Nama", url: "/About" }
+        ]} 
+      />
       {/* Hero Section */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">

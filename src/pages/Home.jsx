@@ -29,6 +29,12 @@ export default function Home() {
 
   return (
     <div>
+      <SEOHead 
+        title="Rea Nekretnine Montenegro - Luksuzne Nekretnine u Crnoj Gori | Porto Montenegro, Luštica Bay"
+        description="Otkrijte najekskluzivnije nekretnine u Crnoj Gori. Apartmani, vile i luksuzne nekretnine u Porto Montenegro, Luštica Bay, Tivat, Budva, Kotor. Profesionalna agencija za nekretnine."
+        keywords="nekretnine crna gora, luksuzne nekretnine crna gora, porto montenegro nekretnine, lustica bay, tivat apartmani, budva vile, kotor nekretnine, kupovina nekretnina, agencija nekretnine montenegro, jadran nekretnine, prodaja apartmana, vile na moru"
+      />
+      <StructuredData type="organization" />
       <HeroSection />
       <CategoriesSection />
       <FeaturedProperties properties={displayProperties} />
