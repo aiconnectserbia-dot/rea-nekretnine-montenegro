@@ -99,12 +99,12 @@ export default function Layout({ children, currentPageName }) {
             {/* Logo */}
             <Link to={createPageUrl('Home')} className="flex items-center gap-3">
               <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/bd5fc2a32_Photoroom_20260109_215650.png" 
-                alt="REA Nekretnine" 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/7f0603cc4_Photoroom_20260109_215650.png" 
+                alt="Rea Nekretnine Montenegro" 
                 className="h-12 w-12 object-contain"
               />
               <div className="hidden sm:block">
-                <h1 className="text-lg font-light tracking-[0.2em] text-white uppercase">REA Nekretnine</h1>
+                <h1 className="text-lg font-light tracking-[0.2em] text-white uppercase">Rea Nekretnine</h1>
                 <p className="text-[10px] tracking-[0.3em] text-[#d4af37] uppercase">Montenegro</p>
               </div>
             </Link>
@@ -196,12 +196,12 @@ export default function Layout({ children, currentPageName }) {
                     </button>
                     <div className="flex items-center gap-3 mb-2">
                       <img 
-                        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/bd5fc2a32_Photoroom_20260109_215650.png" 
-                        alt="REA Nekretnine" 
+                        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/7f0603cc4_Photoroom_20260109_215650.png" 
+                        alt="Rea Nekretnine Montenegro" 
                         className="h-12 w-12 object-contain"
                       />
                       <div>
-                        <h2 className="text-base font-light tracking-[0.2em] text-white uppercase">REA Nekretnine</h2>
+                        <h2 className="text-base font-light tracking-[0.2em] text-white uppercase">Rea Nekretnine</h2>
                         <p className="text-[9px] tracking-[0.3em] text-[#d4af37] uppercase">Montenegro</p>
                       </div>
                     </div>
@@ -294,12 +294,12 @@ export default function Layout({ children, currentPageName }) {
             <div className="space-y-6">
               <div className="flex items-center gap-3">
                 <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/bd5fc2a32_Photoroom_20260109_215650.png" 
-                  alt="REA Nekretnine" 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/7f0603cc4_Photoroom_20260109_215650.png" 
+                  alt="Rea Nekretnine Montenegro" 
                   className="h-14 w-14 object-contain"
                 />
                 <div>
-                  <h3 className="text-lg font-light tracking-[0.2em] uppercase">REA Nekretnine</h3>
+                  <h3 className="text-lg font-light tracking-[0.2em] uppercase">Rea Nekretnine</h3>
                   <p className="text-xs tracking-[0.3em] text-[#d4af37] uppercase">Montenegro</p>
                 </div>
               </div>
@@ -354,7 +354,7 @@ export default function Layout({ children, currentPageName }) {
           {/* Bottom Bar */}
           <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-white/40 text-sm">
-              © 2026 REA Nekretnine. Sva prava zadržana.
+              © 2026 Rea Nekretnine Montenegro. Sva prava zadržana.
             </p>
             <div className="flex items-center gap-4">
               <a 
