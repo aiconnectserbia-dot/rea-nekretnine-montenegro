@@ -12,13 +12,13 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Telefon',
-    details: ['+382 69 123 456', '+382 32 123 456'],
-    href: 'tel:+38269123456'
+    details: ['+382 67 518 587'],
+    href: 'tel:+38267518587'
   },
   {
     icon: Mail,
     title: 'Email',
-    details: ['info@montenegro-realestate.me', 'sales@montenegro-realestate.me'],
+    details: ['info@montenegro-realestate.me'],
     href: 'mailto:info@montenegro-realestate.me'
   },
   {
@@ -108,17 +108,30 @@ export default function Contact() {
               <motion.a
                 key={index}
                 href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-4 sm:p-6 bg-[#0a0a0a] border border-white/5 hover:border-[#d4af37]/30 transition-all group"
+                className="relative p-6 sm:p-8 bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] border border-[#d4af37]/20 hover:border-[#d4af37] transition-all duration-500 group overflow-hidden"
               >
-                <item.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#d4af37] mb-3 sm:mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-base sm:text-lg font-light text-white mb-2 sm:mb-3">{item.title}</h3>
-                {item.details.map((detail, idx) => (
-                  <p key={idx} className="text-white/60 text-xs sm:text-sm">{detail}</p>
-                ))}
+                {/* Decorative corner */}
+                <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-[#d4af37]/10 group-hover:border-[#d4af37]/30 transition-colors" />
+                <div className="absolute bottom-0 left-0 w-12 h-12 border-b border-l border-[#d4af37]/10 group-hover:border-[#d4af37]/30 transition-colors" />
+                
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                <div className="relative">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#d4af37]/10 border border-[#d4af37]/30 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-[#d4af37]/20 group-hover:scale-110 transition-all duration-300">
+                    <item.icon className="w-6 h-6 sm:w-7 sm:h-7 text-[#d4af37]" />
+                  </div>
+                  <h3 className="text-sm sm:text-base font-light text-[#d4af37] tracking-wider uppercase mb-3">{item.title}</h3>
+                  {item.details.map((detail, idx) => (
+                    <p key={idx} className="text-white/70 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>{detail}</p>
+                  ))}
+                </div>
               </motion.a>
             ))}
           </div>
