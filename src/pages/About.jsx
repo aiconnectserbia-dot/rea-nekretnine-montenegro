@@ -37,9 +37,9 @@ export default function About() {
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop"
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/b69fe5568_Gemini_Generated_Image_q05wvaq05wvaq05w.png"
             alt="Montenegro Coast"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center md:object-center object-[center_30%]"
           />
           <div className="absolute inset-0 bg-black/70" />
         </div>
