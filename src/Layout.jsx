@@ -236,52 +236,7 @@ export default function Layout({ children, currentPageName }) {
                           </Link>
                         </motion.div>
                       ))}
-                      {isAdmin && (
-                        <motion.div
-                          key="AdminPanel"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: navLinks.length * 0.1 }}
-                        >
-                          <Link
-                            to={createPageUrl('AdminPanel')}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={`flex items-center gap-3 px-4 py-4 rounded-lg transition-all duration-300 ${
-                              currentPageName === 'AdminPanel'
-                                ? 'bg-[#d4af37]/10 text-[#d4af37] border border-[#d4af37]/30'
-                                : 'text-white/80 hover:bg-white/5 hover:text-white border border-transparent'
-                            }`}
-                          >
-                            <Shield className="w-5 h-5 flex-shrink-0" />
-                            <span className="text-base tracking-wider uppercase">Admin Panel</span>
-                            {currentPageName === 'AdminPanel' && (
-                              <motion.div
-                                layoutId="mobileDot"
-                                className="ml-auto w-2 h-2 rounded-full bg-[#d4af37]"
-                              />
-                            )}
-                          </Link>
-                        </motion.div>
-                      )}
-                      {!isAdmin && (
-                        <motion.div
-                          key="AdminPassword"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: (navLinks.length + 1) * 0.1 }}
-                        >
-                          <button
-                            onClick={() => {
-                              setShowPasswordModal(true);
-                              setMobileMenuOpen(false);
-                            }}
-                            className="w-full text-left flex items-center gap-3 px-4 py-4 rounded-lg transition-all duration-300 text-white/80 hover:bg-white/5 hover:text-white border border-transparent"
-                          >
-                            <Shield className="w-5 h-5 flex-shrink-0" />
-                            <span className="text-base tracking-wider uppercase">Admin Panel</span>
-                          </button>
-                        </motion.div>
-                      )}
+
                   </nav>
 
                   {/* Menu Footer */}
@@ -301,6 +256,15 @@ export default function Layout({ children, currentPageName }) {
                       <Mail className="w-4 h-4 text-[#d4af37]" />
                       <span className="text-white/70 text-sm">Email</span>
                     </a>
+                    <button
+                      onClick={() => {
+                        setShowPasswordModal(true);
+                        setMobileMenuOpen(false);
+                      }}
+                      className="flex items-center justify-center w-8 h-8 opacity-20 hover:opacity-40 transition-opacity"
+                    >
+                      <Shield className="w-4 h-4 text-white/40" />
+                    </button>
                   </div>
                 </div>
               </motion.div>
