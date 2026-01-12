@@ -103,7 +103,7 @@ export default function Contact() {
       {/* Contact Info Cards */}
       <section className="py-16 bg-[#1a1a1a]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
             {contactInfo.map((item, index) => (
               <motion.a
                 key={index}
