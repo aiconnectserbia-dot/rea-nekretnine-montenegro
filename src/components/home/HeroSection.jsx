@@ -1,30 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '../../utils';
-import { Search, ChevronDown } from 'lucide-react';
+import { Search, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
 
 export default function HeroSection() {
   const navigate = useNavigate();
   const [listingType, setListingType] = useState('prodaja');
-  const [propertyType, setPropertyType] = useState('');
-  const [priceRange, setPriceRange] = useState('');
-  const [bedrooms, setBedrooms] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [location, setLocation] = useState('');
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
 
   const handleSearch = () => {
     const params = new URLSearchParams();
     if (listingType) params.set('listing_type', listingType);
-    if (propertyType) params.set('type', propertyType);
-    if (priceRange) params.set('price', priceRange);
-    if (bedrooms) params.set('bedrooms', bedrooms);
+    if (searchQuery) params.set('search', searchQuery);
+    if (location) params.set('location', location);
+    if (minPrice) params.set('min_price', minPrice);
+    if (maxPrice) params.set('max_price', maxPrice);
     navigate(createPageUrl('Properties') + '?' + params.toString());
   };
 
@@ -103,47 +99,39 @@ export default function HeroSection() {
 
           {/* Search Fields */}
           <div className="bg-white/10 backdrop-blur-md p-3 sm:p-6 md:p-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-              <Select value={propertyType} onValueChange={setPropertyType}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white h-11 sm:h-14 text-xs sm:text-sm">
-                  <SelectValue placeholder="Tip Nekretnine" />
-                </SelectTrigger>
-                <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
-                  <SelectItem value="apartman">Apartman</SelectItem>
-                  <SelectItem value="vila">Vila</SelectItem>
-                  <SelectItem value="kuca">Kuća</SelectItem>
-                  <SelectItem value="zemljiste">Zemljište</SelectItem>
-                  <SelectItem value="hotel">Hotel</SelectItem>
-                  <SelectItem value="poslovni_prostor">Poslovni Prostor</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select value={priceRange} onValueChange={setPriceRange}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white h-11 sm:h-14 text-xs sm:text-sm">
-                  <SelectValue placeholder="Raspon Cijene" />
-                </SelectTrigger>
-                <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
-                  <SelectItem value="100000-500000">100.000€ - 500.000€</SelectItem>
-                  <SelectItem value="500000-1000000">500.000€ - 1.000.000€</SelectItem>
-                  <SelectItem value="1000000-2000000">1.000.000€ - 2.000.000€</SelectItem>
-                  <SelectItem value="2000000-5000000">2.000.000€ - 5.000.000€</SelectItem>
-                  <SelectItem value="5000000+">5.000.000€+</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select value={bedrooms} onValueChange={setBedrooms}>
-                <SelectTrigger className="bg-white/10 border-white/20 text-white h-11 sm:h-14 text-xs sm:text-sm">
-                  <SelectValue placeholder="Broj Soba" />
-                </SelectTrigger>
-                <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
-                  <SelectItem value="1">1 Soba</SelectItem>
-                  <SelectItem value="2">2 Sobe</SelectItem>
-                  <SelectItem value="3">3 Sobe</SelectItem>
-                  <SelectItem value="4">4 Sobe</SelectItem>
-                  <SelectItem value="5+">5+ Soba</SelectItem>
-                </SelectContent>
-              </Select>
-
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Šta tražite? (npr. apartman, vila, Porto Montenegro...)"
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-11 sm:h-14 text-xs sm:text-sm"
+                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              />
+              <Input
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="Lokacija (npr. Tivat, Budva, Kotor...)"
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-11 sm:h-14 text-xs sm:text-sm"
+                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
+              <Input
+                type="number"
+                value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value)}
+                placeholder="Min. cijena (€)"
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-11 sm:h-14 text-xs sm:text-sm"
+                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              />
+              <Input
+                type="number"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value)}
+                placeholder="Max. cijena (€)"
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-11 sm:h-14 text-xs sm:text-sm"
+                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              />
               <Button 
                 onClick={handleSearch}
                 className="h-11 sm:h-14 bg-[#d4af37] hover:bg-[#b8960c] text-black font-medium tracking-wider uppercase text-xs sm:text-sm"
