@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from './utils';
-import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Shield } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Shield, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import ScrollToTop from './components/ScrollToTop';
@@ -187,6 +187,12 @@ export default function Layout({ children, currentPageName }) {
                 <div className="relative h-full flex flex-col">
                   {/* Menu Header */}
                   <div className="px-6 py-8 border-b border-[#d4af37]/10">
+                    <button
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-white/60 hover:text-[#d4af37] transition-colors"
+                    >
+                      <ArrowLeft className="w-5 h-5" />
+                    </button>
                     <div className="flex items-center gap-3 mb-2">
                       <img 
                         src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/bd5fc2a32_Photoroom_20260109_215650.png" 
