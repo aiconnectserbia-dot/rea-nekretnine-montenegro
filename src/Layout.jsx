@@ -15,6 +15,10 @@ export default function Layout({ children, currentPageName }) {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   useEffect(() => {
+    document.title = 'Rea Nekretnine Montenegro';
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
