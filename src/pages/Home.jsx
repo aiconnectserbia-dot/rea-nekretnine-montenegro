@@ -6,6 +6,7 @@ import HeroSection from '@/components/home/HeroSection';
 import CategoriesSection from '@/components/home/CategoriesSection';
 import FeaturedProperties from '@/components/home/FeaturedProperties';
 import AboutSection from '@/components/home/AboutSection';
+import AskQuestionSection from '@/components/home/AskQuestionSection';
 import ContactSection from '@/components/home/ContactSection';
 import CTASection from '@/components/home/CTASection';
 
@@ -32,6 +33,7 @@ export default function Home() {
       <CategoriesSection />
       <FeaturedProperties properties={displayProperties} />
       <AboutSection />
+      <AskQuestionSection />
       <ContactSection />
       <CTASection />
     </div>
