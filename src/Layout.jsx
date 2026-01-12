@@ -313,20 +313,22 @@ export default function Layout({ children, currentPageName }) {
             </div>
 
             {/* Quick Links */}
-            <div className="hidden md:block">
-              <h4 className="text-[#d4af37] text-sm tracking-wider uppercase mb-6">Brzi Linkovi</h4>
-              <ul className="space-y-3">
-                {navLinks.map((link) => (
-                  <li key={link.page}>
-                    <Link 
-                      to={createPageUrl(link.page)}
-                      className="text-white/60 hover:text-[#d4af37] transition-colors text-sm"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <div className="hidden md:flex md:justify-center">
+              <div>
+                <h4 className="text-[#d4af37] text-sm tracking-wider uppercase mb-6">Brzi Linkovi</h4>
+                <ul className="space-y-3">
+                  {navLinks.map((link) => (
+                    <li key={link.page}>
+                      <Link 
+                        to={createPageUrl(link.page)}
+                        className="text-white/60 hover:text-[#d4af37] transition-colors text-sm"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             {/* Contact */}
