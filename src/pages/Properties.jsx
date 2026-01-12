@@ -18,8 +18,11 @@ export default function Properties() {
     const initialFilters = {};
     
     if (urlParams.get('listing_type')) initialFilters.listing_type = urlParams.get('listing_type');
+    if (urlParams.get('search')) initialFilters.search = urlParams.get('search');
+    if (urlParams.get('location')) initialFilters.location = urlParams.get('location');
+    if (urlParams.get('min_price')) initialFilters.min_price = urlParams.get('min_price');
+    if (urlParams.get('max_price')) initialFilters.max_price = urlParams.get('max_price');
     if (urlParams.get('type')) initialFilters.type = urlParams.get('type');
-    if (urlParams.get('price')) initialFilters.price = urlParams.get('price');
     if (urlParams.get('bedrooms')) initialFilters.bedrooms = urlParams.get('bedrooms');
     if (urlParams.get('category')) initialFilters.category = urlParams.get('category');
     
@@ -33,13 +36,37 @@ export default function Properties() {
 
   // Filter properties
   const filteredProperties = properties.filter(property => {
+    // Search filter - checks title, location, region, property_type, description, and features
     if (filters.search) {
       const search = filters.search.toLowerCase();
       const matchesSearch = 
         property.title?.toLowerCase().includes(search) ||
         property.location?.toLowerCase().includes(search) ||
-        property.region?.toLowerCase().includes(search);
+        property.region?.toLowerCase().includes(search) ||
+        property.property_type?.toLowerCase().includes(search) ||
+        property.description?.toLowerCase().includes(search) ||
+        property.category?.toLowerCase().includes(search) ||
+        property.features?.some(f => f.toLowerCase().includes(search));
       if (!matchesSearch) return false;
+    }
+
+    // Location filter
+    if (filters.location) {
+      const location = filters.location.toLowerCase();
+      const matchesLocation = 
+        property.location?.toLowerCase().includes(location) ||
+        property.region?.toLowerCase().includes(location);
+      if (!matchesLocation) return false;
+    }
+
+    // Price range filters
+    if (filters.min_price) {
+      const minPrice = parseFloat(filters.min_price);
+      if (!property.price || property.price < minPrice) return false;
+    }
+    if (filters.max_price) {
+      const maxPrice = parseFloat(filters.max_price);
+      if (!property.price || property.price > maxPrice) return false;
     }
     
     if (filters.listing_type && property.listing_type !== filters.listing_type) return false;
