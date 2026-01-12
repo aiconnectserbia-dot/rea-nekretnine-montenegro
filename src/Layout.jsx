@@ -268,7 +268,7 @@ export default function Layout({ children, currentPageName }) {
       {/* Footer */}
       <footer className="bg-[#0a0a0a] border-t border-[#d4af37]/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {/* Brand */}
             <div className="space-y-6">
               <div className="flex items-center gap-3">
@@ -301,18 +301,6 @@ export default function Layout({ children, currentPageName }) {
                     </Link>
                   </li>
                 ))}
-              </ul>
-            </div>
-
-            {/* Locations - Hidden on mobile */}
-            <div className="hidden lg:block">
-              <h4 className="text-[#d4af37] text-sm tracking-wider uppercase mb-6">Lokacije</h4>
-              <ul className="space-y-3 text-white/60 text-sm">
-                <li>Porto Montenegro</li>
-                <li>Luštica Bay</li>
-                <li>Portonovi</li>
-                <li>Boka Kotorska</li>
-                <li>Budva</li>
               </ul>
             </div>
 
