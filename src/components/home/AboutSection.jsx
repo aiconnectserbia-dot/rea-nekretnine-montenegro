@@ -68,7 +68,7 @@ export default function AboutSection() {
             </h2>
             
             <p className="text-white/70 text-lg leading-relaxed mb-6" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
-              Montenegro Real Estate je vodeća agencija za luksuzne nekretnine u Crnoj Gori. 
+              Rea Nekretnine Montenegro je vodeća agencija za luksuzne nekretnine u Crnoj Gori. 
               Sa više od 15 godina iskustva, pomažemo klijentima iz cijelog svijeta da pronađu 
               svoj savršen dom na obali Jadrana.
             </p>
