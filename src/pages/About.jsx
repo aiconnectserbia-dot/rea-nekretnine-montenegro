@@ -36,10 +36,17 @@ export default function About() {
       {/* Hero Section */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
+          {/* Mobile background */}
+          <img 
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/0830d4f8a_Gemini_Generated_Image_q05wvaq05w.png"
+            alt="Montenegro Coast"
+            className="block md:hidden w-full h-full object-cover object-center"
+          />
+          {/* Desktop background */}
           <img 
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6961800f073fe5e6a0d3c722/b69fe5568_Gemini_Generated_Image_q05wvaq05wvaq05w.png"
             alt="Montenegro Coast"
-            className="w-full h-full object-cover object-center md:object-center object-[center_30%]"
+            className="hidden md:block w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-black/70" />
         </div>
