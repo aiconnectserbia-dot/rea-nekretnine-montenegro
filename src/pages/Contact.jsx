@@ -22,16 +22,16 @@ const contactInfo = [
     href: 'mailto:info@montenegro-realestate.me'
   },
   {
-    icon: MapPin,
-    title: 'Adresa',
-    details: ['Porto Montenegro', 'Tivat, Crna Gora'],
-    href: '#'
+    icon: MessageCircle,
+    title: 'Viber',
+    details: ['Kontaktirajte nas na Viber'],
+    href: 'viber://chat?number=%2B38267518587'
   },
   {
-    icon: Clock,
-    title: 'Radno Vrijeme',
-    details: ['Pon - Pet: 09:00 - 18:00', 'Sub: 10:00 - 14:00'],
-    href: '#'
+    icon: MessageCircle,
+    title: 'WhatsApp',
+    details: ['Kontaktirajte nas na WhatsApp'],
+    href: 'https://wa.me/38267518587'
   },
   {
     icon: Facebook,
