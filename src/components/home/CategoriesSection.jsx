@@ -68,27 +68,19 @@ export default function CategoriesSection() {
             viewport={{ once: true }}
             className="col-span-2 lg:col-span-2 lg:row-span-2"
           >
-            <Link 
-              to={createPageUrl('Properties') + '?category=' + categories[0].slug}
-              className="group relative block h-full min-h-[280px] sm:min-h-[500px] overflow-hidden"
-            >
+            <div className="relative block h-full min-h-[280px] sm:min-h-[500px] overflow-hidden">
               <img 
                 src={categories[0].image}
                 alt={categories[0].name}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div className="absolute inset-0 border border-[#d4af37]/0 group-hover:border-[#d4af37]/50 transition-colors duration-500" />
               
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8">
                 <span className="text-[#d4af37] text-[9px] sm:text-xs tracking-[0.2em] uppercase">{categories[0].description}</span>
-                <h3 className="text-xl sm:text-3xl md:text-4xl font-light text-white mt-1 sm:mt-2 mb-2 sm:mb-4">{categories[0].name}</h3>
-                <div className="hidden sm:flex items-center gap-2 text-white/70 group-hover:text-[#d4af37] transition-colors">
-                  <span className="text-sm tracking-wider uppercase">Pogledaj nekretnine</span>
-                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-2 transition-transform" />
-                </div>
+                <h3 className="text-xl sm:text-3xl md:text-4xl font-light text-white mt-1 sm:mt-2">{categories[0].name}</h3>
               </div>
-            </Link>
+            </div>
           </motion.div>
 
           {/* Smaller Cards */}
