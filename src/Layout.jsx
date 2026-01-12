@@ -189,9 +189,9 @@ export default function Layout({ children, currentPageName }) {
                   <div className="px-6 py-8 border-b border-[#d4af37]/10">
                     <button
                       onClick={() => setMobileMenuOpen(false)}
-                      className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-white/60 hover:text-[#d4af37] transition-colors"
+                      className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white/5 border border-[#d4af37]/30 hover:bg-[#d4af37]/20 hover:border-[#d4af37] text-white transition-all duration-300"
                     >
-                      <ArrowLeft className="w-5 h-5" />
+                      <ArrowLeft className="w-6 h-6" />
                     </button>
                     <div className="flex items-center gap-3 mb-2">
                       <img 
