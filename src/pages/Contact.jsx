@@ -32,6 +32,12 @@ const contactInfo = [
     title: 'Radno Vrijeme',
     details: ['Pon - Pet: 09:00 - 18:00', 'Sub: 10:00 - 14:00'],
     href: '#'
+  },
+  {
+    icon: Facebook,
+    title: 'Facebook',
+    details: ['Javite nam se na facebook'],
+    href: 'https://www.facebook.com/neptunia.moon.3/'
   }
 ];
 
