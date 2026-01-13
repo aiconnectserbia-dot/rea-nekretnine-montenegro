@@ -56,9 +56,17 @@ export default function Layout({ children, currentPageName }) {
   ] : navLinks;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
       <ScrollToTop />
       <style>{`
+        body, html {
+          overflow-x: hidden;
+          max-width: 100vw;
+        }
+
+        * {
+          max-width: 100%;
+        }
         :root {
           --gold: #d4af37;
           --gold-light: #e6c65c;
