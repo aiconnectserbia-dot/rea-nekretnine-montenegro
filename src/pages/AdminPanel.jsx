@@ -472,10 +472,10 @@ export default function AdminPanel() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <form onSubmit={handleSubmit} className="bg-[#1a1a1a] p-6 md:p-8 space-y-8">
+            <form onSubmit={handleSubmit} className="bg-[#1a1a1a] border border-white/10 rounded-lg p-6 md:p-8 space-y-8"
               {/* Basic Info */}
-              <div className="space-y-6">
-                <h2 className="text-xl font-light text-white flex items-center gap-3">
+              <div className="space-y-6 p-6 bg-white/5 rounded-lg border border-white/10">
+                <h2 className="text-xl font-light text-white flex items-center gap-3 pb-3 border-b border-[#d4af37]/30">
                   <Home className="w-5 h-5 text-[#d4af37]" />
                   Osnovne Informacije
                 </h2>
@@ -519,13 +519,13 @@ export default function AdminPanel() {
                       <SelectTrigger className="bg-white/5 border-white/10 text-white">
                         <SelectValue placeholder="Izaberite tip" />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
-                        <SelectItem value="apartman">Apartman</SelectItem>
-                        <SelectItem value="vila">Vila</SelectItem>
-                        <SelectItem value="kuca">Kuća</SelectItem>
-                        <SelectItem value="zemljiste">Zemljište</SelectItem>
-                        <SelectItem value="hotel">Hotel</SelectItem>
-                        <SelectItem value="poslovni_prostor">Poslovni Prostor</SelectItem>
+                      <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/30 text-white">
+                        <SelectItem value="apartman" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Apartman</SelectItem>
+                        <SelectItem value="vila" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Vila</SelectItem>
+                        <SelectItem value="kuca" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Kuća</SelectItem>
+                        <SelectItem value="zemljiste" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Zemljište</SelectItem>
+                        <SelectItem value="hotel" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Hotel</SelectItem>
+                        <SelectItem value="poslovni_prostor" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Poslovni Prostor</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -536,26 +536,47 @@ export default function AdminPanel() {
                       <SelectTrigger className="bg-white/5 border-white/10 text-white">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
-                        <SelectItem value="prodaja">Prodaja</SelectItem>
-                        <SelectItem value="iznajmljivanje">Iznajmljivanje</SelectItem>
+                      <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/30 text-white">
+                        <SelectItem value="prodaja" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Prodaja</SelectItem>
+                        <SelectItem value="iznajmljivanje" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Iznajmljivanje</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div>
-                    <Label className="text-white/80 mb-2 block">Kategorija</Label>
+                    <Label className="text-white/80 mb-2 block">Kategorija / Grad</Label>
                     <Select value={formData.category} onValueChange={(v) => setFormData({...formData, category: v})}>
                       <SelectTrigger className="bg-white/5 border-white/10 text-white">
                         <SelectValue placeholder="Izaberite kategoriju" />
                       </SelectTrigger>
-                      <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
-                        <SelectItem value="porto_montenegro">Porto Montenegro</SelectItem>
-                        <SelectItem value="lustica_bay">Luštica Bay</SelectItem>
-                        <SelectItem value="portonovi">Portonovi</SelectItem>
-                        <SelectItem value="boka_kotorska">Boka Kotorska</SelectItem>
-                        <SelectItem value="budva">Budva</SelectItem>
-                        <SelectItem value="waterfront">Waterfront</SelectItem>
+                      <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/30 text-white max-h-[300px]">
+                        <SelectItem value="porto_montenegro" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Porto Montenegro</SelectItem>
+                        <SelectItem value="lustica_bay" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Luštica Bay</SelectItem>
+                        <SelectItem value="portonovi" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Portonovi</SelectItem>
+                        <SelectItem value="waterfront" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Waterfront</SelectItem>
+                        <SelectItem value="tivat" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Tivat</SelectItem>
+                        <SelectItem value="kotor" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Kotor</SelectItem>
+                        <SelectItem value="budva" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Budva</SelectItem>
+                        <SelectItem value="herceg_novi" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Herceg Novi</SelectItem>
+                        <SelectItem value="bar" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Bar</SelectItem>
+                        <SelectItem value="ulcinj" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Ulcinj</SelectItem>
+                        <SelectItem value="podgorica" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Podgorica</SelectItem>
+                        <SelectItem value="cetinje" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Cetinje</SelectItem>
+                        <SelectItem value="niksic" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Nikšić</SelectItem>
+                        <SelectItem value="bijelo_polje" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Bijelo Polje</SelectItem>
+                        <SelectItem value="pljevlja" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Pljevlja</SelectItem>
+                        <SelectItem value="berane" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Berane</SelectItem>
+                        <SelectItem value="rozaje" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Rožaje</SelectItem>
+                        <SelectItem value="plav" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Plav</SelectItem>
+                        <SelectItem value="zabljak" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Žabljak</SelectItem>
+                        <SelectItem value="mojkovac" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Mojkovac</SelectItem>
+                        <SelectItem value="kolasin" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Kolašin</SelectItem>
+                        <SelectItem value="andrijevica" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Andrijevica</SelectItem>
+                        <SelectItem value="pluzine" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Plužine</SelectItem>
+                        <SelectItem value="savnik" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Šavnik</SelectItem>
+                        <SelectItem value="gusinje" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Gusinje</SelectItem>
+                        <SelectItem value="petnjica" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Petnjica</SelectItem>
+                        <SelectItem value="danilovgrad" className="text-white hover:bg-[#d4af37]/20 cursor-pointer">Danilovgrad</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -563,8 +584,8 @@ export default function AdminPanel() {
               </div>
 
               {/* Price & Details */}
-              <div className="space-y-6">
-                <h2 className="text-xl font-light text-white flex items-center gap-3">
+              <div className="space-y-6 p-6 bg-white/5 rounded-lg border border-white/10">
+                <h2 className="text-xl font-light text-white flex items-center gap-3 pb-3 border-b border-[#d4af37]/30">
                   <DollarSign className="w-5 h-5 text-[#d4af37]" />
                   Cijena i Detalji
                 </h2>
@@ -629,8 +650,8 @@ export default function AdminPanel() {
               </div>
 
               {/* Description */}
-              <div className="space-y-4">
-                <Label className="text-white/80">Opis</Label>
+              <div className="space-y-4 p-6 bg-white/5 rounded-lg border border-white/10">
+                <Label className="text-white text-base font-medium">Opis Nekretnine</Label>
                 <Textarea
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
@@ -641,8 +662,8 @@ export default function AdminPanel() {
               </div>
 
               {/* Features */}
-              <div className="space-y-4">
-                <Label className="text-white/80">Karakteristike</Label>
+              <div className="space-y-4 p-6 bg-white/5 rounded-lg border border-white/10">
+                <Label className="text-white text-base font-medium">Karakteristike</Label>
                 <div className="flex gap-2">
                   <Input
                     value={featureInput}
@@ -679,8 +700,8 @@ export default function AdminPanel() {
               </div>
 
               {/* Images */}
-              <div className="space-y-6">
-                <h2 className="text-xl font-light text-white flex items-center gap-3">
+              <div className="space-y-6 p-6 bg-white/5 rounded-lg border border-white/10">
+                <h2 className="text-xl font-light text-white flex items-center gap-3 pb-3 border-b border-[#d4af37]/30">
                   <ImageIcon className="w-5 h-5 text-[#d4af37]" />
                   Slike
                 </h2>
