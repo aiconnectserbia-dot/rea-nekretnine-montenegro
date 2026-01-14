@@ -123,68 +123,68 @@ export default function PropertyDetail() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/98 flex flex-col"
+            className="fixed inset-0 z-[100] bg-black flex flex-col"
             onClick={() => setShowGallery(false)}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-white/10">
+            <div className="flex items-center justify-between p-6 bg-black/50 backdrop-blur-sm border-b border-white/5">
               <div className="text-white">
                 <h3 className="text-lg font-light tracking-wider">{property.title}</h3>
-                <p className="text-sm text-white/60 mt-1">Galerija Slika</p>
+                <p className="text-sm text-white/40 mt-1">Galerija Slika</p>
               </div>
               <button 
                 onClick={() => setShowGallery(false)}
-                className="p-3 hover:bg-white/10 text-white transition-colors rounded-lg"
+                className="p-3 hover:bg-white/5 text-white/80 hover:text-white transition-all rounded-lg"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
 
             {/* Main Image Area */}
-            <div className="flex-1 flex items-center justify-center p-8 relative" onClick={(e) => e.stopPropagation()}>
+            <div className="flex-1 flex items-center justify-center p-8 relative bg-black" onClick={(e) => e.stopPropagation()}>
               <button
                 onClick={() => setCurrentImageIndex(i => i > 0 ? i - 1 : images.length - 1)}
-                className="absolute left-8 p-4 bg-white/10 backdrop-blur-sm hover:bg-[#d4af37] text-white hover:text-black transition-all rounded-lg z-10"
+                className="absolute left-8 p-4 bg-black/60 backdrop-blur-md border border-white/10 hover:bg-[#d4af37] hover:border-[#d4af37] text-white hover:text-black transition-all rounded-lg z-10 shadow-xl"
               >
                 <ChevronLeft className="w-8 h-8" />
               </button>
               
               <motion.img 
                 key={currentImageIndex}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
                 src={images[currentImageIndex]}
                 alt={`${property.title} - Slika ${currentImageIndex + 1}`}
-                className="max-h-[calc(100vh-280px)] max-w-[90vw] object-contain rounded-lg shadow-2xl"
+                className="max-h-[calc(100vh-280px)] max-w-[85vw] object-contain shadow-2xl"
               />
               
               <button
                 onClick={() => setCurrentImageIndex(i => i < images.length - 1 ? i + 1 : 0)}
-                className="absolute right-8 p-4 bg-white/10 backdrop-blur-sm hover:bg-[#d4af37] text-white hover:text-black transition-all rounded-lg z-10"
+                className="absolute right-8 p-4 bg-black/60 backdrop-blur-md border border-white/10 hover:bg-[#d4af37] hover:border-[#d4af37] text-white hover:text-black transition-all rounded-lg z-10 shadow-xl"
               >
                 <ChevronRight className="w-8 h-8" />
               </button>
 
               {/* Image Counter */}
-              <div className="absolute top-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-black/80 backdrop-blur-sm rounded-full text-white">
-                <span className="text-[#d4af37] font-medium">{currentImageIndex + 1}</span>
-                <span className="text-white/60 mx-2">/</span>
-                <span className="text-white/80">{images.length}</span>
+              <div className="absolute top-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-black/90 backdrop-blur-md border border-white/10 rounded-full shadow-xl">
+                <span className="text-[#d4af37] font-medium text-lg">{currentImageIndex + 1}</span>
+                <span className="text-white/40 mx-2 text-lg">/</span>
+                <span className="text-white text-lg">{images.length}</span>
               </div>
             </div>
             
             {/* Thumbnail Strip */}
-            <div className="p-6 bg-black/50 backdrop-blur-sm border-t border-white/10" onClick={(e) => e.stopPropagation()}>
-              <div className="max-w-6xl mx-auto flex gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#d4af37] scrollbar-track-white/10">
+            <div className="p-6 bg-black/80 backdrop-blur-md border-t border-white/5" onClick={(e) => e.stopPropagation()}>
+              <div className="max-w-6xl mx-auto flex gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#d4af37] scrollbar-track-white/5">
                 {images.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setCurrentImageIndex(idx)}
                     className={`flex-shrink-0 w-24 h-24 overflow-hidden rounded-lg border-2 transition-all ${
                       currentImageIndex === idx 
-                        ? 'border-[#d4af37] scale-110 shadow-lg shadow-[#d4af37]/50' 
-                        : 'border-white/20 hover:border-white/60'
+                        ? 'border-[#d4af37] scale-110 shadow-xl shadow-[#d4af37]/60' 
+                        : 'border-white/10 hover:border-white/40 hover:scale-105'
                     }`}
                   >
                     <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
