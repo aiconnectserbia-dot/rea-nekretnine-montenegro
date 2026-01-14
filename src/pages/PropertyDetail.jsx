@@ -6,7 +6,7 @@ import { createPageUrl } from '@/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, Bed, Bath, Maximize2, MapPin, Heart, Share2, 
-  ChevronLeft, ChevronRight, X, Check, Phone, Mail, Loader2
+  ChevronLeft, ChevronRight, X, Check, Phone, Mail, Loader2, Image as ImageIcon
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -244,8 +244,8 @@ export default function PropertyDetail() {
           </>
         )}
 
-        {/* Image Counter & Gallery Button */}
-        <div className="absolute bottom-8 left-8 flex items-center gap-4">
+        {/* Image Counter & Gallery Button - Desktop */}
+        <div className="hidden md:flex absolute bottom-8 left-8 items-center gap-4">
           <div className="px-4 py-2 bg-black/60 backdrop-blur-sm text-white text-sm">
             {currentImageIndex + 1} / {images.length}
           </div>
@@ -255,6 +255,11 @@ export default function PropertyDetail() {
           >
             PRIKAŽI GALERIJU
           </button>
+        </div>
+
+        {/* Image Counter - Mobile (inside image) */}
+        <div className="md:hidden absolute bottom-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white text-xs">
+          {currentImageIndex + 1} / {images.length}
         </div>
 
         {/* Thumbnails */}
@@ -282,6 +287,17 @@ export default function PropertyDetail() {
             )}
           </div>
         )}
+      </div>
+
+      {/* Gallery Button - Mobile (Outside image, below hero) */}
+      <div className="md:hidden max-w-7xl mx-auto px-6 py-4">
+        <button
+          onClick={() => setShowGallery(true)}
+          className="w-full px-6 py-3 bg-[#d4af37] hover:bg-[#b8960c] text-black font-medium tracking-wider transition-colors flex items-center justify-center gap-2"
+        >
+          <ImageIcon className="w-5 h-5" />
+          PRIKAŽI GALERIJU ({images.length})
+        </button>
       </div>
 
       {/* Content */}
