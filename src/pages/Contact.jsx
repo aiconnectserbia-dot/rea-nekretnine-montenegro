@@ -40,6 +40,12 @@ const contactInfo = [
     title: 'Facebook',
     details: ['Javite nam se na facebook'],
     href: 'https://www.facebook.com/neptunia.moon.3/'
+  },
+  {
+    icon: MessageCircle,
+    title: 'TikTok',
+    details: ['Pratite nas na TikTok'],
+    href: 'https://www.tiktok.com/@jasminarea5?_r=1&_t=ZS-9349OsWC1Rc'
   }
 ];
 
