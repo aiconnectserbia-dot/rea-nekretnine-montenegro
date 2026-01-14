@@ -68,22 +68,28 @@ export default function AdminPanel() {
   // Check if user is admin or has password verified
   useEffect(() => {
     const checkAdmin = async () => {
+      // First check if password was verified
       const passwordVerified = localStorage.getItem('admin_password_verified') === 'true';
       
       if (passwordVerified) {
-        setUser({ role: 'admin' });
+        setUser({ role: 'admin', verified: true });
         setIsLoading(false);
         return;
       }
       
+      // Then check if user is logged in as admin
       try {
         const currentUser = await base44.auth.me();
-        setUser(currentUser);
+        if (currentUser && currentUser.role === 'admin') {
+          setUser(currentUser);
+          setIsLoading(false);
+          return;
+        }
       } catch (error) {
-        // User not logged in, will rely on password verification
-      } finally {
-        setIsLoading(false);
+        // User not logged in
       }
+      
+      setIsLoading(false);
     };
     checkAdmin();
   }, []);
@@ -92,7 +98,7 @@ export default function AdminPanel() {
   const { data: properties = [], isLoading: propertiesLoading } = useQuery({
     queryKey: ['admin-properties'],
     queryFn: () => base44.entities.Property.filter({ is_deleted: false }, '-created_date'),
-    enabled: !!user && (user.role === 'admin' || localStorage.getItem('admin_password_verified') === 'true')
+    enabled: !!user && (user.role === 'admin' || user.verified || localStorage.getItem('admin_password_verified') === 'true')
   });
 
   const createPropertyMutation = useMutation({
@@ -299,7 +305,9 @@ export default function AdminPanel() {
     );
   }
 
-  if (!user || (user.role !== 'admin' && !localStorage.getItem('admin_password_verified'))) {
+  const hasAccess = user && (user.role === 'admin' || user.verified || localStorage.getItem('admin_password_verified') === 'true');
+  
+  if (!hasAccess) {
     return (
       <div className="min-h-screen pt-32 flex items-center justify-center">
         <div className="text-center">
