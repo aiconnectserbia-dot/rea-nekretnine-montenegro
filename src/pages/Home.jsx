@@ -38,8 +38,8 @@ export default function Home() {
       />
       <StructuredData type="organization" />
       <HeroSection />
-      <CategoriesSection />
       <FeaturedProperties properties={displayProperties} />
+      <CategoriesSection />
       <AboutSection />
       <AskQuestionSection />
       <ContactSection />
