@@ -123,44 +123,81 @@ export default function PropertyDetail() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+            className="fixed inset-0 z-[100] bg-black/98 flex flex-col"
+            onClick={() => setShowGallery(false)}
           >
-            <button 
-              onClick={() => setShowGallery(false)}
-              className="absolute top-6 right-6 p-2 text-white/60 hover:text-white"
-            >
-              <X className="w-8 h-8" />
-            </button>
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-white/10">
+              <div className="text-white">
+                <h3 className="text-lg font-light tracking-wider">{property.title}</h3>
+                <p className="text-sm text-white/60 mt-1">Galerija Slika</p>
+              </div>
+              <button 
+                onClick={() => setShowGallery(false)}
+                className="p-3 hover:bg-white/10 text-white transition-colors rounded-lg"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Main Image Area */}
+            <div className="flex-1 flex items-center justify-center p-8 relative" onClick={(e) => e.stopPropagation()}>
+              <button
+                onClick={() => setCurrentImageIndex(i => i > 0 ? i - 1 : images.length - 1)}
+                className="absolute left-8 p-4 bg-white/10 backdrop-blur-sm hover:bg-[#d4af37] text-white hover:text-black transition-all rounded-lg z-10"
+              >
+                <ChevronLeft className="w-8 h-8" />
+              </button>
+              
+              <motion.img 
+                key={currentImageIndex}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                src={images[currentImageIndex]}
+                alt={`${property.title} - Slika ${currentImageIndex + 1}`}
+                className="max-h-[calc(100vh-280px)] max-w-[90vw] object-contain rounded-lg shadow-2xl"
+              />
+              
+              <button
+                onClick={() => setCurrentImageIndex(i => i < images.length - 1 ? i + 1 : 0)}
+                className="absolute right-8 p-4 bg-white/10 backdrop-blur-sm hover:bg-[#d4af37] text-white hover:text-black transition-all rounded-lg z-10"
+              >
+                <ChevronRight className="w-8 h-8" />
+              </button>
+
+              {/* Image Counter */}
+              <div className="absolute top-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-black/80 backdrop-blur-sm rounded-full text-white">
+                <span className="text-[#d4af37] font-medium">{currentImageIndex + 1}</span>
+                <span className="text-white/60 mx-2">/</span>
+                <span className="text-white/80">{images.length}</span>
+              </div>
+            </div>
             
-            <button
-              onClick={() => setCurrentImageIndex(i => i > 0 ? i - 1 : images.length - 1)}
-              className="absolute left-6 p-3 bg-white/10 hover:bg-[#d4af37] transition-colors"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            
-            <img 
-              src={images[currentImageIndex]}
-              alt=""
-              className="max-h-[85vh] max-w-[90vw] object-contain"
-            />
-            
-            <button
-              onClick={() => setCurrentImageIndex(i => i < images.length - 1 ? i + 1 : 0)}
-              className="absolute right-6 p-3 bg-white/10 hover:bg-[#d4af37] transition-colors"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-            
-            <div className="absolute bottom-6 text-white/60">
-              {currentImageIndex + 1} / {images.length}
+            {/* Thumbnail Strip */}
+            <div className="p-6 bg-black/50 backdrop-blur-sm border-t border-white/10" onClick={(e) => e.stopPropagation()}>
+              <div className="max-w-6xl mx-auto flex gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#d4af37] scrollbar-track-white/10">
+                {images.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    className={`flex-shrink-0 w-24 h-24 overflow-hidden rounded-lg border-2 transition-all ${
+                      currentImageIndex === idx 
+                        ? 'border-[#d4af37] scale-110 shadow-lg shadow-[#d4af37]/50' 
+                        : 'border-white/20 hover:border-white/60'
+                    }`}
+                  >
+                    <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Hero Image */}
-      <div className="relative h-[60vh] min-h-[500px]">
+      <div className="relative h-[60vh] min-h-[500px] group">
         <img 
           src={images[currentImageIndex]}
           alt={property.title}
@@ -172,14 +209,14 @@ export default function PropertyDetail() {
         {/* Back Button */}
         <Link 
           to={createPageUrl('Properties')}
-          className="absolute top-8 left-8 flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+          className="absolute top-8 left-8 flex items-center gap-2 text-white/80 hover:text-white transition-colors z-10"
         >
           <ArrowLeft className="w-5 h-5" />
           <span className="text-sm tracking-wider uppercase">Nazad</span>
         </Link>
 
         {/* Actions */}
-        <div className="absolute top-8 right-8 flex items-center gap-3">
+        <div className="absolute top-8 right-8 flex items-center gap-3 z-10">
           <button className="p-3 bg-black/40 backdrop-blur-sm hover:bg-[#d4af37] text-white hover:text-black transition-colors">
             <Heart className="w-5 h-5" />
           </button>
@@ -188,26 +225,59 @@ export default function PropertyDetail() {
           </button>
         </div>
 
+        {/* Navigation Arrows */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={() => setCurrentImageIndex(i => i > 0 ? i - 1 : images.length - 1)}
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm hover:bg-[#d4af37] text-white hover:text-black transition-all opacity-0 group-hover:opacity-100"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            
+            <button
+              onClick={() => setCurrentImageIndex(i => i < images.length - 1 ? i + 1 : 0)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 backdrop-blur-sm hover:bg-[#d4af37] text-white hover:text-black transition-all opacity-0 group-hover:opacity-100"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </>
+        )}
+
+        {/* Image Counter & Gallery Button */}
+        <div className="absolute bottom-8 left-8 flex items-center gap-4">
+          <div className="px-4 py-2 bg-black/60 backdrop-blur-sm text-white text-sm">
+            {currentImageIndex + 1} / {images.length}
+          </div>
+          <button
+            onClick={() => setShowGallery(true)}
+            className="px-4 py-2 bg-[#d4af37] hover:bg-[#b8960c] text-black text-sm font-medium tracking-wider transition-colors"
+          >
+            PRIKAŽI GALERIJU
+          </button>
+        </div>
+
         {/* Thumbnails */}
         {images.length > 1 && (
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-            {images.slice(0, 6).map((img, idx) => (
+          <div className="absolute bottom-8 right-8 flex gap-2">
+            {images.slice(0, 5).map((img, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentImageIndex(idx)}
-                className={`w-16 h-12 overflow-hidden border-2 transition-colors ${
-                  currentImageIndex === idx ? 'border-[#d4af37]' : 'border-white/30'
+                className={`w-16 h-16 overflow-hidden border-2 transition-all hover:scale-110 ${
+                  currentImageIndex === idx ? 'border-[#d4af37] scale-110' : 'border-white/30'
                 }`}
               >
                 <img src={img} alt="" className="w-full h-full object-cover" />
               </button>
             ))}
-            {images.length > 6 && (
+            {images.length > 5 && (
               <button
                 onClick={() => setShowGallery(true)}
-                className="w-16 h-12 bg-black/60 flex items-center justify-center text-white text-sm"
+                className="w-16 h-16 bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center text-white hover:bg-[#d4af37] hover:text-black transition-colors"
               >
-                +{images.length - 6}
+                <span className="text-lg font-bold">+{images.length - 5}</span>
+                <span className="text-[10px]">više</span>
               </button>
             )}
           </div>
