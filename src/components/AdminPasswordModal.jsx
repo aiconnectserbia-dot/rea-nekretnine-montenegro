@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Lock, X } from 'lucide-react';
+import { Lock, X, Eye, EyeOff } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -8,6 +8,7 @@ import { toast } from "sonner";
 export default function AdminPasswordModal({ isOpen, onClose, onSuccess }) {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,14 +63,23 @@ export default function AdminPasswordModal({ isOpen, onClose, onSuccess }) {
         <p className="text-white/60 text-sm mb-6">Molimo unesite lozinku za pristup admin panelu:</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <Input
-            type="password"
-            placeholder="Lozinka"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="bg-white/5 border-white/10 text-white h-10"
-            autoFocus
-          />
+          <div className="relative">
+            <Input
+              type={showPassword ? "text" : "password"}
+              placeholder="Lozinka"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="bg-white/5 border-white/10 text-white h-10 pr-10"
+              autoFocus
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors"
+            >
+              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+            </button>
+          </div>
           <div className="flex gap-3">
             <Button
               type="button"

@@ -65,17 +65,22 @@ export default function AdminPanel() {
 
   const queryClient = useQueryClient();
 
-  // Check if user is admin
+  // Check if user is admin or has password verified
   useEffect(() => {
     const checkAdmin = async () => {
+      const passwordVerified = localStorage.getItem('admin_password_verified') === 'true';
+      
+      if (passwordVerified) {
+        setUser({ role: 'admin' });
+        setIsLoading(false);
+        return;
+      }
+      
       try {
         const currentUser = await base44.auth.me();
         setUser(currentUser);
-        if (currentUser.role !== 'admin') {
-          toast.error('Nemate dozvolu za pristup ovoj stranici');
-        }
       } catch (error) {
-        toast.error('Morate biti prijavljeni');
+        // User not logged in, will rely on password verification
       } finally {
         setIsLoading(false);
       }
