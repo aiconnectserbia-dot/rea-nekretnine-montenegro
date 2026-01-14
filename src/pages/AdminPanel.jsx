@@ -472,7 +472,7 @@ export default function AdminPanel() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <form onSubmit={handleSubmit} className="bg-[#1a1a1a] border border-white/10 rounded-lg p-6 md:p-8 space-y-8"
+            <form onSubmit={handleSubmit} className="bg-[#1a1a1a] border border-white/10 rounded-lg p-6 md:p-8 space-y-8">
               {/* Basic Info */}
               <div className="space-y-6 p-6 bg-white/5 rounded-lg border border-white/10">
                 <h2 className="text-xl font-light text-white flex items-center gap-3 pb-3 border-b border-[#d4af37]/30">
