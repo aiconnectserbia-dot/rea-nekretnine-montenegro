@@ -4,6 +4,7 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Properties from './pages/Properties';
 import PropertyDetail from './pages/PropertyDetail';
+import GoogleVerification from './pages/GoogleVerification';
 import __Layout from './Layout.jsx';
 
 
@@ -14,6 +15,7 @@ export const PAGES = {
     "Home": Home,
     "Properties": Properties,
     "PropertyDetail": PropertyDetail,
+    "GoogleVerification": GoogleVerification,
 }
 
 export const pagesConfig = {
