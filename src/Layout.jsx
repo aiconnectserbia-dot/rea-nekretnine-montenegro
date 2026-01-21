@@ -17,12 +17,6 @@ export default function Layout({ children, currentPageName }) {
   useEffect(() => {
     document.title = 'Rea Nekretnine Montenegro';
     
-    // Google Search Console verification
-    const metaTag = document.createElement('meta');
-    metaTag.name = 'google-site-verification';
-    metaTag.content = 'T8zJrT9ZYXNdBAwN5U-HoNzTRWc2CHB1ZRLlJC6a8aY';
-    document.head.appendChild(metaTag);
-    
     // Disable PWA install prompt
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
