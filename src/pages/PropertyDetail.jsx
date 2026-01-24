@@ -451,9 +451,9 @@ export default function PropertyDetail() {
                       <Phone className="w-4 h-4" />
                       +382 69 123 456
                     </a>
-                    <a href="mailto:info@montenegro-realestate.me" className="flex items-center gap-3 text-white/80 hover:text-[#d4af37] transition-colors">
+                    <a href="mailto:rearealestate88@gmail.com" className="flex items-center gap-3 text-white/80 hover:text-[#d4af37] transition-colors">
                       <Mail className="w-4 h-4" />
-                      info@montenegro-realestate.me
+                      rearealestate88@gmail.com
                     </a>
                   </div>
                 </div>
