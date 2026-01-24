@@ -273,7 +273,7 @@ export default function Layout({ children, currentPageName }) {
                       <span className="text-white text-sm">+382 67 518 587</span>
                     </a>
                     <a 
-                      href="mailto:info@montenegro-realestate.me" 
+                      href="mailto:rearealestate88@gmail.com" 
                       className="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
                     >
                       <Mail className="w-4 h-4 text-[#d4af37]" />
@@ -422,7 +422,15 @@ export default function Layout({ children, currentPageName }) {
               >
                 <Facebook className="w-4 h-4" />
               </a>
-            </div>
+              <a 
+                href="https://www.instagram.com/rea.real.estate?igsh=MTV1ZmV6MTRyYzN3aA%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-[#d4af37] hover:text-[#d4af37] transition-colors"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              </div>
           </div>
         </div>
       </footer>
