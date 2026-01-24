@@ -366,8 +366,8 @@ export default function Layout({ children, currentPageName }) {
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-[#d4af37] flex-shrink-0" />
-                  <a href="mailto:info@montenegro-realestate.me" className="text-white/60 hover:text-[#d4af37] text-sm transition-colors">
-                    info@montenegro-realestate.me
+                  <a href="mailto:rearealestate88@gmail.com" className="text-white/60 hover:text-[#d4af37] text-sm transition-colors">
+                    rearealestate88@gmail.com
                   </a>
                 </li>
               </ul>
@@ -389,7 +389,7 @@ export default function Layout({ children, currentPageName }) {
                 <Phone className="w-4 h-4" />
               </a>
               <a 
-                href="mailto:info@montenegro-realestate.me"
+                href="mailto:rearealestate88@gmail.com"
                 className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-[#d4af37] hover:text-[#d4af37] transition-colors"
               >
                 <Mail className="w-4 h-4" />
