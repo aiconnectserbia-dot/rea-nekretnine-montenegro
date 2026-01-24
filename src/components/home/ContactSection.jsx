@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MessageCircle, Facebook } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Facebook, Instagram } from 'lucide-react';
 
 const contactMethods = [
   {
@@ -13,8 +13,8 @@ const contactMethods = [
   {
     icon: Mail,
     title: 'Email',
-    detail: 'info@montenegro-realestate.me',
-    href: 'mailto:info@montenegro-realestate.me',
+    detail: 'rearealestate88@gmail.com',
+    href: 'mailto:rearealestate88@gmail.com',
     color: 'from-blue-500/20 to-blue-500/5'
   },
   {
@@ -37,6 +37,13 @@ const contactMethods = [
     detail: 'Pratite nas',
     href: 'https://www.facebook.com/neptunia.moon.3/',
     color: 'from-blue-600/20 to-blue-600/5'
+  },
+  {
+    icon: Instagram,
+    title: 'Instagram',
+    detail: 'Pratite nas',
+    href: 'https://www.instagram.com/rea.real.estate?igsh=MTV1ZmV6MTRyYzN3aA%3D%3D',
+    color: 'from-pink-500/20 to-pink-500/5'
   }
 ];
 

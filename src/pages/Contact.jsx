@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useMutation } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MessageCircle, Send, Loader2, Check, Facebook } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Send, Loader2, Check, Facebook, Instagram } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -20,8 +20,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    details: ['info@montenegro-realestate.me'],
-    href: 'mailto:info@montenegro-realestate.me'
+    details: ['rearealestate88@gmail.com'],
+    href: 'mailto:rearealestate88@gmail.com'
   },
   {
     icon: MessageCircle,
@@ -40,6 +40,12 @@ const contactInfo = [
     title: 'Facebook',
     details: ['Javite nam se na facebook'],
     href: 'https://www.facebook.com/neptunia.moon.3/'
+  },
+  {
+    icon: Instagram,
+    title: 'Instagram',
+    details: ['Pratite nas na Instagram'],
+    href: 'https://www.instagram.com/rea.real.estate?igsh=MTV1ZmV6MTRyYzN3aA%3D%3D'
   },
   {
     icon: MessageCircle,
@@ -75,7 +81,7 @@ export default function Contact() {
     <div className="min-h-screen pt-24">
       <SEOHead 
         title="Kontakt - Rea Nekretnine Montenegro | Kontaktirajte Nas"
-        description="Kontaktirajte Rea Nekretnine Montenegro. Telefon: +382 67 518 587, Email: info@montenegro-realestate.me. Pišite nam za sve informacije o nekretninama u Crnoj Gori."
+        description="Kontaktirajte Rea Nekretnine Montenegro. Telefon: +382 67 518 587, Email: rearealestate88@gmail.com. Pišite nam za sve informacije o nekretninama u Crnoj Gori."
         keywords="kontakt, nekretnine crna gora kontakt, agencija kontakt, telefon nekretnine, email nekretnine montenegro"
       />
       <StructuredData 
