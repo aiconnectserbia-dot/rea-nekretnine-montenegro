@@ -27,6 +27,23 @@ export default function Layout({ children, currentPageName }) {
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
     });
+
+    // Voiceflow Chat Widget
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.onload = function() {
+      window.voiceflow.chat.load({
+        verify: { projectID: '69767878d692701c73c83325' },
+        url: 'https://general-runtime.voiceflow.com',
+        versionID: 'production',
+        voice: {
+          url: "https://runtime-api.voiceflow.com"
+        }
+      });
+    };
+    script.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
+    const firstScript = document.getElementsByTagName('script')[0];
+    firstScript.parentNode.insertBefore(script, firstScript);
   }, []);
 
   useEffect(() => {
