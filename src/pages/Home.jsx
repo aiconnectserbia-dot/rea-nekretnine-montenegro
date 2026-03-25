@@ -1,6 +1,5 @@
 import React from 'react';
-import { base44 } from '@/api/base44Client';
-import { useQuery } from '@tanstack/react-query';
+import { properties } from '@/data/properties';
 
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
@@ -13,21 +12,9 @@ import ContactSection from '@/components/home/ContactSection';
 import CTASection from '@/components/home/CTASection';
 
 export default function Home() {
-  const { data: properties = [] } = useQuery({
-    queryKey: ['featuredProperties'],
-    queryFn: () => base44.entities.Property.filter({ featured: true, is_deleted: false }, '-created_date', 6),
-  });
-
-  // If no featured properties, get latest ones
-  const { data: latestProperties = [] } = useQuery({
-    queryKey: ['latestProperties'],
-    queryFn: () => base44.entities.Property.filter({ is_deleted: false }, '-created_date', 6),
-    enabled: properties.length === 0,
-  });
-
   const activeProperties = properties.filter(p => !p.is_deleted);
-  const activeLatestProperties = latestProperties.filter(p => !p.is_deleted);
-  const displayProperties = activeProperties.length > 0 ? activeProperties : activeLatestProperties;
+  const featured = activeProperties.filter(p => p.featured);
+  const displayProperties = featured.length > 0 ? featured.slice(0, 6) : activeProperties.slice(0, 6);
 
   return (
     <div>

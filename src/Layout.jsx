@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from './utils';
-import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Shield, ArrowLeft } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { base44 } from '@/api/base44Client';
 import ScrollToTop from './components/ScrollToTop';
-
-import AdminPasswordModal from './components/AdminPasswordModal';
 
 export default function Layout({ children, currentPageName }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
+
 
   useEffect(() => {
     document.title = 'Rea Nekretnine Montenegro';
@@ -37,18 +33,6 @@ export default function Layout({ children, currentPageName }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const checkAdmin = async () => {
-      try {
-        const user = await base44.auth.me();
-        setIsAdmin(user.role === 'admin');
-      } catch (error) {
-        setIsAdmin(false);
-      }
-    };
-    checkAdmin();
-  }, []);
-
   const navLinks = [
     { name: 'Početna', page: 'Home' },
     { name: 'Nekretnine', page: 'Properties' },
@@ -56,10 +40,7 @@ export default function Layout({ children, currentPageName }) {
     { name: 'Kontakt', page: 'Contact' },
   ];
 
-  const adminNavLinks = isAdmin ? [
-    ...navLinks,
-    { name: 'Admin Panel', page: 'AdminPanel', icon: Shield }
-  ] : navLinks;
+
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
@@ -162,13 +143,7 @@ export default function Layout({ children, currentPageName }) {
                 <Phone className="w-4 h-4" />
                 <span className="text-sm">+382 67 518 587</span>
               </a>
-              <button
-                onClick={() => setShowPasswordModal(true)}
-                className="text-white/20 hover:text-white/40 transition-colors"
-                title="Admin Panel"
-              >
-                <Shield className="w-4 h-4" />
-              </button>
+
             </div>
 
             {/* Mobile Menu Button */}
@@ -279,15 +254,7 @@ export default function Layout({ children, currentPageName }) {
                       <Mail className="w-4 h-4 text-[#d4af37]" />
                       <span className="text-white/70 text-sm">Email</span>
                     </a>
-                    <button
-                      onClick={() => {
-                        setShowPasswordModal(true);
-                        setMobileMenuOpen(false);
-                      }}
-                      className="flex items-center justify-center w-8 h-8 opacity-20 hover:opacity-40 transition-opacity"
-                    >
-                      <Shield className="w-4 h-4 text-white/40" />
-                    </button>
+
                   </div>
                 </div>
               </motion.div>
@@ -298,16 +265,6 @@ export default function Layout({ children, currentPageName }) {
 
       {/* Main Content */}
       <main>{children}</main>
-
-      {/* Admin Password Modal */}
-      <AdminPasswordModal 
-        isOpen={showPasswordModal}
-        onClose={() => setShowPasswordModal(false)}
-        onSuccess={() => {
-          setShowPasswordModal(false);
-          window.location.href = createPageUrl('AdminPanel');
-        }}
-      />
 
       {/* Footer */}
       <footer className="bg-[#0a0a0a] border-t border-[#d4af37]/20">
