@@ -1,0 +1,113 @@
+{
+  "name": "Property",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Naziv nekretnine"
+    },
+    "location": {
+      "type": "string",
+      "description": "Lokacija nekretnine"
+    },
+    "region": {
+      "type": "string",
+      "description": "Region (npr. Tivat, Budva, Herceg Novi)"
+    },
+    "price": {
+      "type": "number",
+      "description": "Cijena u eurima"
+    },
+    "price_on_request": {
+      "type": "boolean",
+      "default": false,
+      "description": "Cijena na upit"
+    },
+    "property_type": {
+      "type": "string",
+      "enum": [
+        "apartman",
+        "vila",
+        "kuca",
+        "zemljiste",
+        "hotel",
+        "poslovni_prostor"
+      ],
+      "description": "Tip nekretnine"
+    },
+    "listing_type": {
+      "type": "string",
+      "enum": [
+        "prodaja",
+        "iznajmljivanje"
+      ],
+      "default": "prodaja"
+    },
+    "bedrooms": {
+      "type": "number",
+      "description": "Broj spava\u0107ih soba"
+    },
+    "bathrooms": {
+      "type": "number",
+      "description": "Broj kupatila"
+    },
+    "area": {
+      "type": "number",
+      "description": "Povr\u0161ina u m\u00b2"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "URL glavne slike"
+    },
+    "gallery": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Galerija slika"
+    },
+    "description": {
+      "type": "string",
+      "description": "Opis nekretnine"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Karakteristike (bazen, pogled na more, parking...)"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Istaknuta nekretnina"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "porto_montenegro",
+        "lustica_bay",
+        "portonovi",
+        "boka_kotorska",
+        "budva",
+        "waterfront"
+      ],
+      "description": "Kategorija/Projekat"
+    },
+    "is_deleted": {
+      "type": "boolean",
+      "default": false,
+      "description": "Da li je nekretnina obrisana"
+    },
+    "is_sold": {
+      "type": "boolean",
+      "default": false,
+      "description": "Da li je nekretnina prodata"
+    }
+  },
+  "required": [
+    "title",
+    "location",
+    "property_type"
+  ]
+}

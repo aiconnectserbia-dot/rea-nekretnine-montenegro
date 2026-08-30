@@ -1,0 +1,40 @@
+{
+  "name": "Inquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Ime i prezime"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email adresa"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefon"
+    },
+    "message": {
+      "type": "string",
+      "description": "Poruka"
+    },
+    "property_id": {
+      "type": "string",
+      "description": "ID nekretnine (ako je upit za specifi\u010dnu nekretninu)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "novi",
+        "u_obradi",
+        "odgovoren"
+      ],
+      "default": "novi"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "message"
+  ]
+}
